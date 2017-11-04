@@ -1,0 +1,109 @@
+<!--
+<p>Usuario: {{ user.username }}.</p>
+<p>Email: {{ user.email }}.</p>
+<p>Nome: {{ user.first_name}}.</p>
+<p>Sobrenome: {{ user.last_name }}.</p>
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> 
+    <link rel="stylesheet" type="text/css" href="css/teste.css"> 
+     <link rel="stylesheet" type="text/css" href="{% static 'teste.css' %}"/>  
+      <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/> 
+  </head>
+  
+<body>
+    <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-4 menu">
+          <div class="row perfil">
+              <div class="col-2">
+                  <img src="{% static 'img/user.jpg' %}" alt="" class="img-fluid" id="user" style="width:180px"> 
+              </div>
+
+              <div class="col-10 nomeuser">
+                  <h3>{{ user.username }}</h3>
+              </div>
+          </div> <!-- fim perfil -->
+          
+          <div class="row blank">
+            
+          </div>
+
+          <div class="row mx-auto" style="width: 200px;">
+            <div class="col botoes">
+              <!--matches-->
+              <div class="row match">
+                <a href=""><h5>Minhas Combinações</h5></a>
+              </div>            
+              <!--filtro-->  
+              <div class="row filtro">
+                <a href=""><h5>Filtrar</h5></a>
+              </div>
+              <!--config-->
+              <div class="row config">
+                <a href=""><h5>Configurações</h5></a>
+              </div>
+              <!--sair-->
+              <div class="row sair">
+                <a href=""><h5>Sair</h5></a>
+              </div>
+
+            </div>        
+        </div>
+          <div class="row logomarca">
+            <img src="{% static 'img/DL_logo.png' %}">
+          </div>                
+
+      </div>
+      
+      <div class="col-sm-8 tela">
+          <div class="row">
+            
+            <div class="row mx-auto foto" style="border-radius: 30%;">
+              <img src="{% static 'img/user.jpg' %}">
+            </div>
+
+            <div class="row mx-auto info">
+                                    
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col mx-auto" style="width: 230px;padding-left:100px;">
+              <a href=""><img src="{% static 'img/nao.png' %}"></a>  
+            </div>
+
+            <div class="col mx-auto" style="width: 230px;">
+              <a href=""><img src="{% static 'img/like.png' %}"></a>  
+            </div>
+          </div>
+
+
+
+
+
+      </div>
+    </div>
+
+  <!-- fim container -->
+    </div>  
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+  </body>
+</html>

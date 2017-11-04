@@ -1,0 +1,55 @@
+body{
+
+}
+.menu{
+	background-color:#ffffff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#ffffff, #f7b8ae); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#ffffff, #f7b8ae); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ffffff, #f7b8ae); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ffffff, #f7b8ae); /* Standard syntax (must be last) */
+	height:100vh;
+}
+.perfil{
+	background-color: #e7644f;
+}
+#user{
+	border-radius: 50%;
+	margin-top: 50%;
+}
+.nomeuser{
+	margin-top: 25px;
+	color: #ffffff;
+}
+.blank{
+	height: 25%;
+}
+.botoes a{
+	color: #e7644f;
+}
+.botoes a:hover{
+	color: #8c8a8a;
+}
+.botoes h5{	
+	padding-top: 8px;
+}
+.foto img{
+	margin-top: 100px;
+	width: 400px;	
+	height: 400px;
+}
+.info{
+	background-color:#ffffff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#ffffff, #f7b8ae); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#ffffff, #f7b8ae); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ffffff, #f7b8ae); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ffffff, #f7b8ae); /* Standard syntax (must be last) */
+    height: 200px;
+    border-radius: 40%;
+}
+
+.rodape{
+  position: absolute;
+  left: 50%;
+  transform:translateX(-50%);
+  bottom:5%; 
+}
