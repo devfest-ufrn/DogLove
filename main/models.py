@@ -37,9 +37,9 @@ class Pet (models.Model):
     porte = models.CharField(max_length=8,choices=PORTE_ESCOLHAS, default='pequeno')
     nome = models.CharField(max_length=15, default='nome')
     raca = models.CharField(max_length=15, default='raca')
-    idade = models.PositiveSmallIntegerField
+    idade = models.PositiveSmallIntegerField()
     sexo = models.CharField(max_length=1, choices=SEXO_ESCOLHAS, default='Macho')
-    situacao = models.BooleanField
+    situacao = models.BooleanField()
     foto = models.ImageField(upload_to=user_directory_path, default='/uploads/padrao.jpg')
     bio = models.TextField(max_length=500, default='bio')
     

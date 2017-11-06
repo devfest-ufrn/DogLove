@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from location_field.models.plain import PlainLocationField
 from models import Profile
+from models import Pet
 from django.forms import ModelForm
 
 class SignUpForm(UserCreationForm):
@@ -23,6 +24,11 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ('ddd', 'celular', 'rua', 'endereco')
+        
+class PetForm(ModelForm):
+    class Meta:
+        model = Pet
+        fields = ('porte', 'nome', 'raca', 'idade', 'sexo', 'situacao', 'bio')
         
 class LoginForm(forms.Form):
     username = forms.CharField (max_length=30)

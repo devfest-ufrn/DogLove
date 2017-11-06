@@ -15,8 +15,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> 
     <link rel="stylesheet" type="text/css" href="css/teste.css"> 
-     <link rel="stylesheet" type="text/css" href="{% static 'teste.css' %}"/>  
-      <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/> 
+    <link rel="stylesheet" type="text/css" href="{% static 'teste.css' %}"/>  
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/> 
   </head>
   
 <body style = "overflow: hidden;">
@@ -43,10 +43,10 @@
             <a href=""><h4>Configurações</h4></a>
           </div> 
           <div class="meupet" style="padding-bottom:5%">
-            <a href=""><h4>Meu Pet</h4></a>
+            <a href="meupet"><h4>Meu Pet</h4></a>
           </div> 
           <div class="sair" style="padding-bottom:5%">
-            <a href="logout/"><h4>Sair</h4></a>
+            <a href="logout"><h4>Sair</h4></a>
           </div> 
         </center>
       </div>
@@ -57,7 +57,9 @@
     </div>
     
     <div class="col-sm-8">
-      {% block content %}{% endblock %}
+      <div>
+        {% block content %}{% endblock %}
+      </div>
     </div>
   </div>
 </body>

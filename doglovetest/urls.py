@@ -7,6 +7,7 @@ from main import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
-    url(r'^doglove/$', views.doglove, name='doglove'),
-    url(r'^doglove/logout/$', logout, {'template_name': 'index.html', 'next_page': '/'}, name='sign-out'),
+    url(r'^doglove/$', views.principal, name='principal'),
+    url(r'^doglove/logout$', logout, {'template_name': 'index.html', 'next_page': '/'}, name='sign-out'),
+    url(r'^doglove/meupet$', views.meupet, name='meupet'),
 ]
