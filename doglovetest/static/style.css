@@ -166,7 +166,7 @@
 
 .header-blue .action-button.btn-lg{
   padding:7px 20px;
-  margin-left: 25%;
+  margin-left: 0%;
   width: 200px;
   font-size: 25px;
 }
@@ -309,13 +309,15 @@ input#inputSenha.form-control{
 }
 button#btn_entrar{
   border-radius: 20px;
-  width: 30%;
-  margin-left: 80px;  
+  width: 90px;
+  margin-left: 10px;  
   background:linear-gradient(-180deg, #F15F79, #B24592);
   color: #ffffff;
   font-size: 18px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
+  
+  
 }
 #linkCadastrar{
   color: #95989A;
@@ -324,9 +326,33 @@ button#btn_entrar{
   color: #BF4A8C;
   font-style: italic;
 }
-div.modal-content.conteudo_modal{
+div.modal-content.conteudo_modalEntrar{
+  width: 400px;
+  height: 300px;
   border-radius: 25px;
   margin-left: 100px;  
   padding: 0cm 2cm 0cm 2cm;
   color: black;
+}
+div.modal-content.conteudo_modalCadastrar{
+  width: 400px;
+  height: 930px;
+  border-radius: 25px;
+  margin-left: 100px;  
+  padding: 0cm 2cm 0cm 2cm;
+  color: black;
+}
+
+input{
+  width: 60%;
+  border-radius: 20px;
+  border : 1px #888 solid;
+}
+label{
+  color :#888888;
+}
+div.modal-content.conteudo_modalEntrar h2 {
+    color: #95989A;
+    padding-left: 20px;
+    font-size: 30px;
 }

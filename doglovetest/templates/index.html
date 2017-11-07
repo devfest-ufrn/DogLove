@@ -33,12 +33,14 @@
                             <!--inicio modal de login-->
                             <div class="modal fade login" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                               <div class="modal-dialog modal-md" role="document">
-                                <div class="modal-content conteudo_modal">
+                                <div class="modal-content conteudo_modalEntrar">
                                   <!--conteudo modal-->
                                   <form method="post">
                                     {% csrf_token %}
+                                    <h2>Login</h2>
+                                    <hr>
                                     {% for field in form2 %}
-                                      <p style ="color:black">
+                                      <p style ="color:black" class = "text-center">
                                         {{ field.label_tag }}<br>
                                         {{ field }}
                                         {% for error in field.errors %}
@@ -47,7 +49,11 @@
                                       </p>
                                     {% endfor %}
                                     <br>
-                                    <center><button type="submit" class="btn btn-default" id="btn_entrar">Login</button></center> <br>
+                                    <center>
+                                        <button type="submit" class="btn btn-default" style = "align:center" id="btn_entrar">Login</button>
+                                        </center>
+                                        
+                                        <p class="text-center" id="linkCadastrar">Ainda não tem uma conta?<a href="">Cadastre-se</a></p>
                                   </form>
                                 </div>
                               </div>
@@ -78,13 +84,15 @@
                             <!--inicio modal-->
                             <div class="modal fade cadastro" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
                               <div class="modal-dialog modal-md" role="document">
-                                <div class="modal-content conteudo_modal">
+                                <div class="modal-content conteudo_modalCadastrar">
                                    <!--conteudo modal-->
-                                    <center><h2>Cadastro</h2></center>
+                                   
                                     <form method="post">
                                     {% csrf_token %}
+                                    <h2>Cadastro</h2>
+                                    <hr>
                                     {% for field in form %}
-                                      <p style ="color:black">
+                                      <p style ="color:black; font-size:18px" class="text-center">
                                         {{ field.label_tag }}<br>
                                         {{ field }}<br>
                                         {{ field.help_text }}
@@ -93,7 +101,7 @@
                                         {% endfor %}
                                       </p>
                                     {% endfor %}
-                                    <button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br>
+                                    <button type="submit" class="btn btn-default" style="margin-left:75px;" id="btn_entrar">Enviar</button><br><br>
                                     </form>
                                     <!-- fim do conteudo -->
                                 </div>
@@ -168,7 +176,7 @@
             </div>
     </section>
 
-    <section class="bg-primary" id="finally">
+    <section class="bg-primary hidden-xs hidden-sm" id="finally">
         <div class="container">
             <div class="row">
                 <h1>Você não vai deixar o seu melhor amigo esperando né?!</h1>                
