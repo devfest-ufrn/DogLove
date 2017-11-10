@@ -7,9 +7,7 @@ from models import Pet
 from django.forms import ModelForm
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=False, help_text='Opcional.')
-    last_name = forms.CharField(max_length=30, required=False, help_text='Opcional.')
-    email = forms.EmailField(max_length=254, help_text='Opcional.')
+    email = forms.EmailField(max_length=254)
     
     #ddd = forms.CharField(max_length=2)
     #celular = forms.CharField(max_length=9)
@@ -18,7 +16,7 @@ class SignUpForm(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+        fields = ('username', 'email', 'password1', 'password2', )
         
 class ProfileForm(ModelForm):
     class Meta:

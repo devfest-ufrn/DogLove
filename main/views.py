@@ -46,7 +46,7 @@ def principal (request):
     if request.user.is_authenticated():
         return render (request, 'principal.html')
     else:
-        return render (request, 'index.html')
+        return redirect ('index')
     
 def meupet (request):
     if request.method == 'POST':
