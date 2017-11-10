@@ -10,6 +10,7 @@ def index(request):
     if not request.user.is_authenticated():
         if request.method == 'POST':
             form = SignUpForm(request.POST)
+            form2 = LoginForm(request.POST)
             if form.is_valid():
                 user = form.save()
                 user.refresh_from_db()  # load the profile instance created by the signal
@@ -21,14 +22,17 @@ def index(request):
                 login(request, user)
                 return redirect('principal')
             else:
-                username = request.POST.get("username")
-                raw_password = request.POST.get("password")
-                user = authenticate(username=username, password=raw_password)
-                if user is not None:
-                    login(request, user)
-                    return redirect('principal')
-                #else:
-                 # mensagem de erro que o login falhou
+                if form2.is_valid():
+                    username = request.POST.get("username")
+                    raw_password = request.POST.get("password")
+                    user = authenticate(username=username, password=raw_password)
+                    if user is not None:
+                        login(request, user)
+                        return redirect('principal')
+                    else:
+                     return render (request, 'erro_login.html', {'form': form, 'form2':form2})
+                else:
+                    return render (request, 'erro_cadastro.html', {'form': form, 'form2':form2})
                     
         else:
             form = SignUpForm()
@@ -39,7 +43,10 @@ def index(request):
         return redirect('principal')
     
 def principal (request):
-    return render (request, 'principal.html')
+    if request.user.is_authenticated():
+        return render (request, 'principal.html')
+    else:
+        return render (request, 'index.html')
     
 def meupet (request):
     if request.method == 'POST':
@@ -52,3 +59,4 @@ def meupet (request):
     else:
         form = PetForm(instance=request.user.pet)
         return render (request, 'meupet.html', {'form': form})
+        

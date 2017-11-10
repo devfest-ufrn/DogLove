@@ -1,59 +1,73 @@
-<!--
-<p>Usuario: {{ user.username }}.</p>
-<p>Email: {{ user.email }}.</p>
-<p>Nome: {{ user.first_name}}.</p>
-<p>Sobrenome: {{ user.last_name }}.</p>
--->
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
   <head>
+    <title>DogLove - Bem-vindo!</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <!--fonte-->
+    <!--<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"> 
-    <link rel="stylesheet" type="text/css" href="css/teste.css"> 
-    <link rel="stylesheet" type="text/css" href="{% static 'teste.css' %}"/>  
-    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'logadocss.css' %}"/>
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'bootstrap-theme.min.css' %}"/>-->
+    <!--icone-->
+     <link rel="shortcut icon" type="image/png" href="{% static 'img/logo_icon.png' %}"/> 
   </head>
-  
-<body style = "overflow: hidden;">
-  <div class="row">
-    <div class="col-sm-4 menu">
-      <div class="row perfil" style = "padding-left:5%">
-        <div class="col-2" style="padding-bottom:5%">
-          <img src="{% static 'img/user.jpg' %}" alt="" class="img-fluid" id="user" style = "width: 90%; height: 80%">
+<body>
+
+<div class="row">
+    <div class="col-sm-4">
+        <div class="nav-side-menu">
+            <div class="brand">
+              <img src="https://pbs.twimg.com/media/CXFWpPJWEAAioO2.jpg" class="img-circle" alt="User Image" id="usercao">
+              {{ user.username }}
+            </div>      
+            <a class="btn toggle-btn" href="#navigation-main" aria-label="Skip to main navigation">
+              <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
+          
+                <div class="menu-list">
+                
+                    <ul id="menu-content" class="menu-content collapse out">
+                        <li>
+                          <center>
+                          <a href="#">
+                          <i class="fa fa-dashboard fa-lg"></i> Minhas Combinações
+                          </a>
+                          </center>
+                        </li>
+        
+                        <li data-toggle="collapse" data-target="#products">
+                          <a href="#">Configurações </a>
+                        </li>
+                        <ul class="sub-menu collapse" id="products">
+                            <li><a href="#">Filtrar</a></li>
+                            <li><a href="#">Editar informações</a></li>
+                            <li><a href="#">Notificações</a></li>                    
+                        </ul>              
+                         
+                          <li>
+                          <a href="meupet">
+                          	<i  class="fa fa-sign-out" aria-hidden="true"></i>
+         Meu Pet
+                          </a>
+                        </li>
+                            
+                         <li>
+                          <a href="logout">
+                          	<i  class="fa fa-sign-out" aria-hidden="true"></i>
+         Sair
+                          </a>
+                        </li>
+                    </ul>
+             </div>
+             <img src="{% static 'img/DL_logo.png' %}" class="img-responsive hidden-xs hidden-sm" id="logo">        
         </div>
-        <div class="col-10 nomeuser">
-          <h3>{{ user.username }}</h3>
-        </div>
-      </div> <!-- fim perfil -->
-      
-      <div class="row blank">
-      </div>
-      
-      <div class="botoes">
-        <center>
-          <div class="match" style="padding-bottom:5%">
-            <a href=""><h4>Minhas Combinações</h4></a>
-          </div> 
-          <div class="configuracoes" style="padding-bottom:5%">
-            <a href=""><h4>Configurações</h4></a>
-          </div> 
-          <div class="meupet" style="padding-bottom:5%">
-            <a href="meupet"><h4>Meu Pet</h4></a>
-          </div> 
-          <div class="sair" style="padding-bottom:5%">
-            <a href="logout"><h4>Sair</h4></a>
-          </div> 
-        </center>
-      </div>
-      
-      <div class="rodape">
-        <img src="{% static 'img/DL_logo.png' %}">
-      </div>
     </div>
     
     <div class="col-sm-8">
@@ -61,6 +75,26 @@
         {% block content %}{% endblock %}
       </div>
     </div>
-  </div>
+    
+</div>
+
+
+            
+
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
+
 </html>
+
+<!--
+<p>Usuario: {{ user.username }}.</p>
+<p>Email: {{ user.email }}.</p>
+<p>Nome: {{ user.first_name}}.</p>
+<p>Sobrenome: {{ user.last_name }}.</p>
+-->
+
+
+

@@ -2,20 +2,22 @@
 {% load static %}
 
 {% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
 <form method="post">
     {% csrf_token %}
     {% for field in form %}
     <center>
-          <p style ="color:black">
-            {{ field.label_tag }}<br>
-            {{ field }}<br>
-            {{ field.help_text }}
-            {% for error in field.errors %}
-              <p style="color: red">{{ error }}</p>
-            {% endfor %}
-          </p>
+      <br>
+      <p style ="color:black">
+        {{ field.label_tag }}<br>
+        {{ field }}<br>
+        {{ field.help_text }}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
         {% endfor %}
-        <button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br>
+      </p>
+      {% endfor %}
+      <button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br>
     </center>
 </form>
 {% endblock %}
