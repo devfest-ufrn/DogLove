@@ -48,26 +48,36 @@ def index(request):
     
 def principal (request):
     if request.user.is_authenticated():
+        
+        #Criando uma match a partir da lista de usuarios:
         users = User.objects.all()
         for atual in users:
             if request.user != atual:
-                print (request.user)
-                print (atual)
-                novamatch = Match()
-                novamatch.user1 = request.user
-                novamatch.user2 = atual
-                try:
-                    novamatch.save()
-                    break
-                except IntegrityError:
-                    del novamatch
+                jaexiste = False
+                for match in request.user.user2.all():
+                    if match.user1 == atual:
+                        jaexiste = True
+                        print ('ja existe')
+                if jaexiste == False:
+                    novamatch = Match()
+                    novamatch.user1 = request.user
+                    novamatch.user2 = atual
+                    try:
+                        novamatch.save()
+                        break
+                    except IntegrityError:
+                        del novamatch
+                        
+        #lista com todos os matchs do usuario
         lista1 = request.user.user1.all()
         lista2 = request.user.user2.all()
         matchs = list(chain(lista1, lista2))
-        #lista com todos os matchs do usuario
+        perfil_exibido = matchs[1].user2
         for match in matchs:
             print (match.id)
-        return render (request, 'principal.html')
+            
+        return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido})
+        
     else:
         return redirect ('index')
     
@@ -83,3 +93,52 @@ def meupet (request):
         form = PetForm(instance=request.user.pet)
         return render (request, 'meupet.html', {'form': form})
         
+def aceitar (request, usuarioAceito):
+    lista1 = request.user.user1.all()
+    lista2 = request.user.user2.all()
+    
+    encontrado = False
+    
+    for match in lista1:
+        if match.user2.username == usuarioAceito:
+            match.user1status = 'A'
+            encontrado = True
+            match.save()
+            #print('match salvo com sucesso')
+            break
+
+    if encontrado == False:
+        for match in lista2:
+            if match.user1.username == usuarioAceito:
+                match.user2status = 'A'
+                encontrado = True
+                match.save()
+                #print('match salvo com sucesso')
+                break
+    
+    return redirect ('principal')
+    
+def rejeitar (request, usuarioAceito):
+    lista1 = request.user.user1.all()
+    lista2 = request.user.user2.all()
+    
+    encontrado = False
+    
+    for match in lista1:
+        if match.user2.username == usuarioAceito:
+            match.user1status = 'R'
+            encontrado = True
+            match.save()
+            #print('match salvo com sucesso')
+            break
+
+    if encontrado == False:
+        for match in lista2:
+            if match.user1.username == usuarioAceito:
+                match.user2status = 'R'
+                encontrado = True
+                match.save()
+                #print('match salvo com sucesso')
+                break
+    
+    return redirect ('principal')
