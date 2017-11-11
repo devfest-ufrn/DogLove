@@ -50,12 +50,12 @@ def principal (request):
     
 def meupet (request):
     if request.method == 'POST':
-        form = PetForm(request.POST, instance=request.user.pet)
+        form = PetForm(request.POST, request.FILES, instance=request.user.pet)
         if form.is_valid():
             form.save()
-            return redirect('principal')
+            return redirect('meupet')
         else:
-            return redirect('principal')
+            return redirect('meupet')
     else:
         form = PetForm(instance=request.user.pet)
         return render (request, 'meupet.html', {'form': form})

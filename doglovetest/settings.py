@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+DEFAULT_CHARSET = 'utf-8'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -130,7 +132,7 @@ STATICFILES_DIRS = [
     DIRNAME + '/static/', 
 ]
  
-MEDIA_ROOT = BASE_DIR + '/uploads'
+MEDIA_ROOT = BASE_DIR + '/uploads/'
 
 MEDIA_URL = BASE_DIR + '/uploads/'
 

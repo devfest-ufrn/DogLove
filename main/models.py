@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import datetime
 from django.contrib.auth.models import User
 from django.db import models
@@ -29,7 +31,7 @@ class Pet (models.Model):
     )
     
     SEXO_ESCOLHAS = (
-        ('F', 'Femea'),
+        ('F', 'Fêmea'),
         ('M', 'Macho'),
     )
     
