@@ -1,5 +1,6 @@
-from django.shortcuts import render
+# -*- coding: utf-8 -*-
 
+from django.shortcuts import render
 from forms import SignUpForm
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
@@ -49,7 +50,26 @@ def index(request):
 def principal (request):
     if request.user.is_authenticated():
         
-        #Criando uma match a partir da lista de usuarios:
+        #Cria uma lista com todas as matchs do usuário
+        lista1 = request.user.user1.all()
+        lista2 = request.user.user2.all()
+        matchs = list(chain(lista1, lista2))
+        
+        #Procura a primeira match que ainda não foi avaliada pelo usuário em sua lista de matchs
+        # e renderiza a página com ela
+        for match in matchs:
+            if match.user1 == request.user:
+                if match.user1status == 'N':
+                    perfil_exibido = match.user2
+                    return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido})
+            else:
+                if match.user2status == 'N':
+                    perfil_exibido = match.user1
+                    return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido})
+        
+        #Caso o usuário não tenha mais nenhuma match para avaliar, buscamos na lista 
+        #de usuários para tentar criar uma nova (sem filtros por enquanto)
+        matchCriada = False
         users = User.objects.all()
         for atual in users:
             if request.user != atual:
@@ -57,27 +77,26 @@ def principal (request):
                 for match in request.user.user2.all():
                     if match.user1 == atual:
                         jaexiste = True
-                        print ('ja existe')
                 if jaexiste == False:
                     novamatch = Match()
                     novamatch.user1 = request.user
                     novamatch.user2 = atual
                     try:
                         novamatch.save()
+                        matchCriada = True
+                        perfil_exibido = novamatch.user2
                         break
                     except IntegrityError:
                         del novamatch
-                        
-        #lista com todos os matchs do usuario
-        lista1 = request.user.user1.all()
-        lista2 = request.user.user2.all()
-        matchs = list(chain(lista1, lista2))
-        perfil_exibido = matchs[1].user2
-        for match in matchs:
-            print (match.id)
-            
-        return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido})
         
+        if matchCriada:
+            return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido})
+          
+        #Caso não seja possível criar uma match, exibimos uma página de erro
+        #avisando para mudar os filtros ou tentar mais tarde
+        else:
+            return render (request, 'matchNaoEncontrada.html')
+            
     else:
         return redirect ('index')
     
