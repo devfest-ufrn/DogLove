@@ -5,6 +5,10 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from forms import ProfileForm, PetForm
 from forms import LoginForm
+from django.contrib.auth.models import User
+from models import Match
+from django.db import IntegrityError
+from itertools import chain
 
 def index(request):
     if not request.user.is_authenticated():
@@ -44,6 +48,25 @@ def index(request):
     
 def principal (request):
     if request.user.is_authenticated():
+        users = User.objects.all()
+        for atual in users:
+            if request.user != atual:
+                print (request.user)
+                print (atual)
+                novamatch = Match()
+                novamatch.user1 = request.user
+                novamatch.user2 = atual
+                try:
+                    novamatch.save()
+                    break
+                except IntegrityError:
+                    del novamatch
+        lista1 = request.user.user1.all()
+        lista2 = request.user.user2.all()
+        matchs = list(chain(lista1, lista2))
+        #lista com todos os matchs do usuario
+        for match in matchs:
+            print (match.id)
         return render (request, 'principal.html')
     else:
         return redirect ('index')
@@ -53,9 +76,9 @@ def meupet (request):
         form = PetForm(request.POST, request.FILES, instance=request.user.pet)
         if form.is_valid():
             form.save()
-            return redirect('meupet')
+            return redirect('principal')
         else:
-            return redirect('meupet')
+            return redirect('principal')
     else:
         form = PetForm(instance=request.user.pet)
         return render (request, 'meupet.html', {'form': form})

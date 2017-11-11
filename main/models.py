@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import datetime
+import uuid
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
@@ -65,3 +66,24 @@ def save_user_pet(sender, instance, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+    
+class Match (models.Model):
+    
+    STATUS_ESCOLHAS = (
+        ('A', 'Aprovado'),
+        ('R', 'Rejeitado'),
+        ('N', 'NaoAvaliado'),
+    )
+    
+    user1 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user1")
+    user2 = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user2")
+    user1status = models.CharField(max_length=1, choices=STATUS_ESCOLHAS, default='N')
+    user2status = models.CharField(max_length=1, choices=STATUS_ESCOLHAS, default='N')
+    data = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):           
+        return str(self.id)
+    
+    class Meta:
+        ordering = ('data',)
+        unique_together = (("user1", "user2"),)
