@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from location_field.models.plain import PlainLocationField
 from models import Profile
 from models import Pet
-from django.forms import ModelForm, TextInput, NumberInput
+from django.forms import ModelForm, TextInput, NumberInput, FileInput
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254)
@@ -25,6 +25,7 @@ class PetForm(ModelForm):
         model = Pet
         fields = ('porte', 'nome', 'raca', 'idade', 'foto', 'sexo', 'situacao', 'bio')
         widgets = {
+            'foto': FileInput(),
             'nome': TextInput(attrs={'style': 'width: 150px; text-align: center;'}),
             'raca': TextInput(attrs={'style': 'width: 150px; text-align: center;'}),
             'idade': NumberInput(attrs={'style': 'width: 50px; text-align: center;'}),

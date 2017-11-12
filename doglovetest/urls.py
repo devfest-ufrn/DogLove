@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^doglove/$', views.principal, name='principal'),
     url(r'^doglove/logout$', logout, {'template_name': 'index.html', 'next_page': '/'}, name='sign-out'),
     url(r'^doglove/meupet$', views.meupet, name='meupet'),
+    url(r'^doglove/minhascombinacoes$', views.minhasCombinacoes, name='minhasCombinacoes'),
     url(r'^doglove/aceitar/(?P<usuarioAceito>.+)$', views.aceitar, name='aceitar'),
     url(r'^doglove/rejeitar/(?P<usuarioAceito>.+)$', views.rejeitar, name='rejeitar'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

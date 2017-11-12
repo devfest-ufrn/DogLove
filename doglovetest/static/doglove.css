@@ -14,14 +14,13 @@ html, body {
 }
 
 .usuario img{
-  width: 100%;
-  max-width: 40px;
-  height: auto;
+  width: 40px;
+  height: 40px;
   border-radius: 20px;
 }
 
 .usuario #usercao{
-    border: 2px #fff solid;
+  border: 2px #fff solid;
 }
 
 .opcoes {
@@ -43,8 +42,8 @@ html, body {
 }
 
 #fotoperfil{
- width: 55%; 
- height: 55%;
+ width: 500px; 
+ height: 500px;
  margin-top: 5%;
  border-radius: 25px;
  border: 5px solid black;
@@ -106,6 +105,12 @@ html, body {
   .opcoes a{
   color: #F15F79;
   }
+  
+ #fotoperfil{
+ width: 200px; 
+ height: 200px;
+}
+
 }
 
 

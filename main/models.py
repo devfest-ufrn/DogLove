@@ -9,6 +9,7 @@ from location_field.models.plain import PlainLocationField
 from django.utils.encoding import python_2_unicode_compatible
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.conf import settings
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -16,6 +17,7 @@ class Profile(models.Model):
     celular = models.CharField(max_length=9)
     rua = models.CharField(max_length=255)
     endereco = PlainLocationField(based_fields=['rua'], zoom=7)
+    qntComb = models.IntegerField(default='0')
     def __str__(self):
         return self.user.username
     
@@ -43,7 +45,7 @@ class Pet (models.Model):
     idade = models.PositiveSmallIntegerField(default='0')
     sexo = models.CharField(max_length=1, choices=SEXO_ESCOLHAS, default='Macho')
     situacao = models.BooleanField(default='true')
-    foto = models.ImageField(upload_to=user_directory_path, default='/uploads/padrao.jpg')
+    foto = models.ImageField(upload_to=user_directory_path, default=settings.MEDIA_ROOT + 'padrao.jpg')
     bio = models.TextField(max_length=500, default='bio')
     
     def __str__(self):

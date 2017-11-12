@@ -26,15 +26,15 @@
         <div class="menu">
             <!--foto do cachorro e nome do usuario-->
             <div class="usuario">
-              <img src="{{ request.user.pet.foto.url }}" class="img-circle" alt="User Image" id="usercao">
+              <img src="{{ request.user.pet.foto.url }}" alt="User Image" id="usercao">
               {{ user.username }}
             </div>
             
             <div class="opcoes">
                 <center>
                     <li>
-                        <a href="">
-                            Minhas Combinações
+                        <a href="minhascombinacoes">
+                            Minhas Combinações ({{ request.user.profile.qntComb }})
                         </a>
                     </li>
                     <li>
