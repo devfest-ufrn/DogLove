@@ -13,8 +13,8 @@ from django.conf import settings
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    ddd = models.CharField(max_length=2)
-    celular = models.CharField(max_length=9)
+    ddd = models.CharField(max_length=2, default='00')
+    celular = models.CharField(max_length=9, default='000000000')
     rua = models.CharField(max_length=255)
     endereco = PlainLocationField(based_fields=['rua'], zoom=7)
     qntComb = models.IntegerField(default='0')

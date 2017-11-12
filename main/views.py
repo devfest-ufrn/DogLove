@@ -125,7 +125,6 @@ def minhasCombinacoes (request):
         if match.user1 == request.user:
             if match.user1status == 'A':
                 if match.user2status == 'A':
-                    print ('entrou')
                     listausuarios.append(match.user2)
         else:
             if match.user1status == 'A':
@@ -135,6 +134,7 @@ def minhasCombinacoes (request):
     if len(listausuarios) == 0:
         return render (request, 'nenhumaCombinacao.html')
     else:
+        print(listausuarios[0].profile.ddd)
         return render (request, 'minhasCombinacoes.html', {'listausuarios': listausuarios})
         
 def aceitar (request, usuarioAceito):
