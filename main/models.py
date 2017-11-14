@@ -93,8 +93,8 @@ class Match (models.Model):
 class Mensagem (models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     conteudo = models.CharField(max_length=300)
-    sender = models.ForeignKey (User, on_delete=models.CASCADE)
-    match = models.ForeignKey (Match, on_delete=models.CASCADE)
+    sender = models.CharField(max_length=150)
+    match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name="mensagens")
     
     class Meta:
         ordering = ('timestamp',)

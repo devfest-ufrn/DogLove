@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^doglove/logout$', logout, {'template_name': 'index.html', 'next_page': '/'}, name='sign-out'),
     url(r'^doglove/meupet$', views.meupet, name='meupet'),
     url(r'^doglove/minhascombinacoes$', views.minhasCombinacoes, name='minhasCombinacoes'),
-    url(r'^doglove/minhascombinacoes/(?P<usuarioAceito>.+)$', views.principal),
+    url(r'^doglove/minhascombinacoes/(?P<destinatario>.+)$', views.enviarMensagem, name='enviarMensagem'),
     url(r'^doglove/configuracoes$', views.configuracoes, name='configuracoes'),
     url(r'^doglove/aceitar/(?P<usuarioAceito>.+)$', views.aceitar, name='aceitar'),
     url(r'^doglove/rejeitar/(?P<usuarioAceito>.+)$', views.rejeitar, name='rejeitar'),

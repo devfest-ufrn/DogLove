@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from forms import ProfileForm, PetForm
 from forms import LoginForm
 from django.contrib.auth.models import User
-from models import Match
+from models import Match, Mensagem
 from django.db import IntegrityError
 from itertools import chain
 
@@ -146,7 +146,6 @@ def minhasCombinacoes (request):
     if len(listausuarios) == 0:
         return render (request, 'nenhumaCombinacao.html')
     else:
-        print(listausuarios[0].profile.ddd)
         return render (request, 'minhasCombinacoes.html', {'listausuarios': listausuarios})
         
 def aceitar (request, usuarioAceito):
@@ -215,3 +214,46 @@ def atualizarComb (user):
                 
     user.profile.qntComb = qntMatch
     user.save()
+    
+def enviarMensagem (request, destinatario):
+    
+    #procura o match no qual a mensagem deve ser inserida
+    lista1 = request.user.user1.all()
+    lista2 = request.user.user2.all()
+    
+    encontrado = False
+    
+    for match in lista1:
+        if match.user2.username == destinatario:
+            encontrado = True
+            combinacao = match
+            break
+
+        if encontrado == False:
+            for match in lista2:
+                if match.user1.username == destinatario:
+                    combinacao = match
+                    encontrado = True
+                    break
+
+    if request.method == 'POST':
+        
+        mensagem = request.POST.get('mensagem', '')
+        
+        #instancia a mensagem a ser enviada
+        novamensagem = Mensagem()
+        novamensagem.conteudo = mensagem
+        novamensagem.sender = request.user.username
+        novamensagem.match = combinacao
+
+        novamensagem.save()
+        
+        listamensagens = combinacao.mensagens.all()
+        
+        return render (request, 'chat.html', {'listamensagens': listamensagens})
+        
+    else:
+        
+        listamensagens = combinacao.mensagens.all()
+        
+        return render (request, 'chat.html', {'listamensagens': listamensagens})

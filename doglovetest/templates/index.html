@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
     <link rel="shortcut icon" type="image/png" href="{% static 'img/logo_icon.png' %}"/> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/jquery/msg.js' %}">
     {% block script %}{% endblock %}
 </head>
 
@@ -71,7 +72,7 @@
                         <div class="iphone-mockup">
                             <img src="{% static 'img/cachorro.png' %}" class="device" usemap="#tutorialmap">
                             <map name="tutorialmap">
-                                <area shape="rect" coords="100,459,382,515," alt="" href="#tutorial">
+                                <area shape="rect" coords="100,459,382,515," alt="" href="#services">
                                 </area>
                             </map>
                             <div class="screen"></div>
@@ -102,7 +103,9 @@
                                         {% endfor %}
                                       </p>
                                     {% endfor %}
-                                    <button type="submit" class="btn btn-default" style="margin-left:75px;" id="btn_entrar">Enviar</button><br><br>
+                                   
+                                    <button type="submit" class="btn btn-default" style="margin-left:120px" id="btn_entrar">Enviar</button><br><br>
+                                       
                                     </form>
                                     <!-- fim do conteudo -->
                                 </div>
@@ -166,7 +169,7 @@
     <!-- End Carousel -->
 </div>
     
-    <div class="container hidden-xs hidden-sm">
+    <div class="container hidden-xs hidden-sm" id="services">
         <h1 class="text-center">Nosso Sistema</h1>
         <hr class="hr">
             <div class="row">
@@ -264,35 +267,86 @@
     </div> <!-- end sidetab container -->
 </section>
 
-    <section class="bg-primary hidden-xs hidden-sm" id="finally">
-        <div class="container">
-            <div class="row">
-                <h1>Você não vai deixar o seu melhor amigo esperando né?!</h1>                
-                <div class="col-md-6 cao">                                   
-                    <img src="{% static 'img/cachorro2.png' %}" class="img-circle"> 
-                </div>
-                <div class="col-md-6 descricao">                    
-                    <p >Deslize para direita e quem sabe ele arrume outras companhias...!</p>                    
-                </div>                
-        </div>
-  </section>
+    <div class="row hidden-xs hidden-sm parceiros">
+        <h1 class="text-center">Parceiros</h1>
+        <hr class="hr">
+        <div class="col-lg-4">
+          <img class="img-circle" src="https://clinicsense.com/uploads/images/2015/02/03/partnership.jpg" alt="Generic placeholder image" width="140" height="140">
+          <h2>Heading</h2>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" src="https://clinicsense.com/uploads/images/2015/02/03/partnership.jpg" alt="Generic placeholder image" width="140" height="140">
+          <h2>Heading</h2>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+          <img class="img-circle" src="https://clinicsense.com/uploads/images/2015/02/03/partnership.jpg" alt="Generic placeholder image" width="140" height="140">
+          <h2>Heading</h2>
+        </div><!-- /.col-lg-4 -->
+      </div><!-- /.row -->
                     
 
-    <section>
-        <footer class="hidden-xs hidden-sm phone-holder">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-0">
-                       <h2>Contato</h2>
-                       <p>email@hotmail.com</p>
+    
+<section class="box-position">
+<div class="container">
+        <div class="col-xs-12 col-md-3 col-sm-4 pull-right">
+
+             <!-- Message box title    --> 
+            <div class="panel bp">
+               <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#message" aria-expanded="false" aria-controls="message">
+                <div class="panel-heading top-bar" role="tab" id="open-message">
+                    
+                    <div class="col-md-10 col-xs-10 hidden-xs">
+                        <p class="panel-title"><span class="glyphicon glyphicon-comment"></span> Fale conosco</p>
                     </div>
-                    <div class="col-md-8 col-md-offset-0">
-                        <img src="{% static 'img/DL_logo.png' %}">
+                            
+                    <div class="col-md-2 col-xs-2 mais">
+                        
+                        <span class="glyphicon  glyphicon-plus"></span>
+                        
+                    </div>
+                            
+                </div>
+                </a>
+            </div>
+                
+             <!-- Message body	--> 
+             
+                <div id="message" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        <form  action="#">
+                        
+                            <div class="form-group ">
+                              <input type="text" class="form-control" id="name" placeholder="Nome" required="required">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" id="subject" placeholder="Assunto" required="required">
+                            </div>
+                            <div class="form-group">
+                              <input type="email" class="form-control" id="email" placeholder="Email" required="required">
+                            </div>
+                            <div class="form-group">
+                              <textarea type="text" class="form-control" id="message" placeholder="Menssagem..." required="required"></textarea>
+                            </div>
+                            
+                             <div class="form-group botaoenviar">
+                              <input type="submit" class="form-control btn" id="submit" value="Enviar">
+                            </div>
+                            
+                        </form>
                     </div>
                 </div>
-            </div>
-        </footer>
-    </section>    
+                
+        </div>
+</div>
+
+</section>   
+
+    <div class="footer-bottom">
+        <div class="container">
+            <p class="pull-left"> Copyright © Footer E-commerce Plugin 2014. All right reserved. </p>            
+        </div>
+    </div>
+        <!-- /.footer-bottom-->
 
 </div>
 
@@ -301,3 +355,4 @@
 </body>
 
 </html>
+
