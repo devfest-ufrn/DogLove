@@ -114,6 +114,18 @@ def meupet (request):
         form = PetForm(instance=request.user.pet)
         return render (request, 'meupet.html', {'form': form})
         
+def configuracoes (request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('principal')
+        else:
+            return redirect('principal')
+    else:
+        form = ProfileForm(instance=request.user.pet)
+        return render (request, 'configuracoes.html', {'form': form})
+        
 def minhasCombinacoes (request):
     
     lista1 = request.user.user1.all()

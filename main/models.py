@@ -15,7 +15,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     ddd = models.CharField(max_length=2, default='00')
     celular = models.CharField(max_length=9, default='000000000')
-    rua = models.CharField(max_length=255)
+    rua = models.CharField(max_length=255, help_text='Digite seu endereço e confira o local no mapa')
     endereco = PlainLocationField(based_fields=['rua'], zoom=7)
     qntComb = models.IntegerField(default='0')
     def __str__(self):
@@ -89,3 +89,12 @@ class Match (models.Model):
     class Meta:
         ordering = ('data',)
         unique_together = (("user1", "user2"),)
+        
+class Mensagem (models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)
+    conteudo = models.CharField(max_length=300)
+    sender = models.ForeignKey (User, on_delete=models.CASCADE)
+    match = models.ForeignKey (Match, on_delete=models.CASCADE)
+    
+    class Meta:
+        ordering = ('timestamp',)

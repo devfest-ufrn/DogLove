@@ -2,12 +2,14 @@
 {% load static %}
 
 {% block content %}
-    {% for usuario in listausuarios %}
-        <div class="usuario" style="width: 50%; margin: auto; border-radius: 50px; margin-top: 5%; height: auto;">
-          <img src="{{ usuario.pet.foto.url }}" alt="User Image" id="usercao">
-          {{ usuario.pet.nome }} <br>
-          <img src="{% static 'img/mail.png' %}" style="margin-left: 50px; margin-right: 50px;" >
-          <img src="{% static 'img/cancelar.png' %}" style="margin-left: 50px; margin-right: 50px;">
-        </div>
-    {% endfor %}
+{% for usuario in listausuarios %}
+    <div class="usuario" style="width: 50%; margin: auto; border-radius: 50px; margin-top: 5%; height: auto;">
+        <img src="{{ usuario.pet.foto.url }}" alt="User Image" id="usercao">
+        {{ usuario.pet.nome }} <br>
+        <a href="minhascombinacoes/{{usuario.username}}">
+            <img src="{% static 'img/mail.png' %}" style="margin-left: 50px; margin-right: 50px;" > 
+        </a>
+        <img src="{% static 'img/cancelar.png' %}" style="margin-left: 50px; margin-right: 50px;">
+    </div>
+{% endfor %}
 {% endblock %}

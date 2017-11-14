@@ -19,6 +19,10 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ('ddd', 'celular', 'rua', 'endereco')
+        labels = {
+            'rua': u"Endereço",
+            'endereco': 'Coordenadas',
+        }
         
 class PetForm(ModelForm):
     class Meta:
