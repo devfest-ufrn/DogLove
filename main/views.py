@@ -224,17 +224,19 @@ def enviarMensagem (request, destinatario):
     encontrado = False
     
     for match in lista1:
+        print("entrou lista 1")
         if match.user2.username == destinatario:
             encontrado = True
             combinacao = match
             break
 
-        if encontrado == False:
-            for match in lista2:
-                if match.user1.username == destinatario:
-                    combinacao = match
-                    encontrado = True
-                    break
+    if encontrado == False:
+        for match in lista2:
+            print("entrou lista 2")
+            if match.user1.username == destinatario:
+                combinacao = match
+                encontrado = True
+                break
 
     if request.method == 'POST':
         
