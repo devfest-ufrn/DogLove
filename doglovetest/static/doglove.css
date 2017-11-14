@@ -18,7 +18,9 @@ html, body {
   height: 40px;
   border-radius: 20px;
 }
-
+#usercao img{
+ margin-bottom: 20px;
+}
 .usuario #usercao{
   border: 2px #fff solid;
 }
@@ -36,17 +38,16 @@ html, body {
 
 #logo{
   position: relative;
-  padding-top: 50%; 
+  padding-top: 35%; 
   left: 50%;
   transform: translateX(-50%);
 }
 
 #fotoperfil{
- width: 500px; 
- height: 500px;
+ width: 350px; 
+ height: 350px;
  margin-top: 5%;
- border-radius: 25px;
- border: 5px solid black;
+ /*border-radius: 7px;*/
 }
 
 #infos {
@@ -76,7 +77,7 @@ html, body {
 @media (min-width: 768px) {
   
   .opcoes {
-    padding-top: 60%;
+    padding-top: 30%;
   }
   .menu {
     position: fixed;
@@ -94,12 +95,6 @@ html, body {
   
   #logo{
     display: none;
-  }
-  
-  .opcoes {
-    padding-top: 5%;
-    padding-bottom: 5%;
-    height: 100%;
   }
   
   .opcoes a{
@@ -203,4 +198,141 @@ li .sub-menu li:before {
 
 #not{
   width: 80%;  
+}
+
+.card-block {    
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+    text-align: left;
+}
+
+.card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card-title {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+}
+
+.card-text {
+    clear: both;
+    margin-top: .5em;
+    color: rgba(0, 0, 0, .68);
+}
+
+.card-footer {
+    font-size: 1em;
+    position: static;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    padding: .75em 1em;
+    color: rgba(0, 0, 0, .4);
+    border-top: 1px solid rgba(0, 0, 0, .05) !important;
+    background: #fff;
+}
+
+.card-inverse .btn {
+    border: 1px solid rgba(0, 0, 0, .05);
+}
+.card {
+    width: 350px;
+    height: auto;
+    font-size: 1em;
+    overflow: hidden;
+    margin-top: 15px;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0px 0px 14px #888;
+    border-radius: 7px;
+}
+.card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.card-title {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+}
+
+.card-text {
+    clear: both;
+    margin-top: .5em;
+    color: rgba(0, 0, 0, .68);
+}
+
+.card-footer {
+    font-size: 1em;
+    position: static;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    padding: .75em 1em;
+    color: rgba(0, 0, 0, .4);
+    border-top: 1px solid rgba(0, 0, 0, .05) !important;
+    background: #fff;
+}
+
+.card-inverse .btn {
+    border: 1px solid rgba(0, 0, 0, .05);
+}
+
+.profile-inline {
+    position: relative;
+    top: 0;
+    display: inline-block;
+}
+
+.profile-inline ~ .card-title {
+    display: inline-block;
+    margin-left: 4px;
+    vertical-align: top;
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
+.meta {
+    font-size: 1em;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta a:hover {
+    color: rgba(0, 0, 0, .87);
+}
+
+.nav-side-menu{
+  scroll-bar:hidden;
+}
+
+@media (max-width: 767px) {
+  div.perfil{
+  text-align: center;
+  margin-left:10px;
+}
+div.col-xs-2.col-sm-2.hidden-md.hidden-lg{
+    margin-left:10px;
+}
+}
+div.perfil{
+    padding-right: 50px;
+    padding-left: 0px;
 }

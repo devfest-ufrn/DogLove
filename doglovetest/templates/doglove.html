@@ -16,21 +16,33 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'doglove.css' %}"/>
+
     <!--icone-->
      <link rel="shortcut icon" type="image/png" href="{% static 'img/logo_icon.png' %}"/> 
+     <link rel="stylesheet" type="text/css" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
   </head>
 <body>
 
-<div class="row">
-    <div class="col-sm-4">
-        <div class="menu">
-            <!--foto do cachorro e nome do usuario-->
-            <div class="usuario">
-              <img src="{{ request.user.pet.foto.url }}" alt="User Image" id="usercao">
-              {{ user.username }}
-            </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="menu">
+                <!--foto do cachorro e nome do usuario-->
+                <div class="row usuario">
+                    <div class="col-xs-2 col-sm-2 hidden-md hidden-lg" style="margin-left:10px;">
+                        <i class="fa fa-1x fa-cog"></i>
+                  </div>
+                  <center>
+                  <div class="col-xs-7 col-sm-6 col-md-6 perfil">
+                      <a href="meupet"><img src="{{ request.user.pet.foto.url }}" alt="User Image" id="usercao"></a>
+                      {{ user.username }}
+                  </div>
+                  </center>
+                  <div class="col-xs-2 col-sm-2 hidden-md hidden-lg">        
+                         <a href="minhascombinacoes" style="color:#fff;"><i class="fa fa-1x fa-paw"></i></a>
+                  </div>
+                </div>
             
-            <div class="opcoes">
+            <div class="opcoes hidden-xs hidden-sm">
                 <center>
                     <li>
                         <a href="minhascombinacoes">

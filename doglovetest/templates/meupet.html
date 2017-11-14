@@ -3,11 +3,14 @@
 
 {% block content %}
   <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
-<form method="post" enctype="multipart/form-data">
+
+  <div class=" col-md-10 col-xs-12 cadastrocao" style="margin-bottom: 20px;">
+    <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <center>
-      <br>
-      <p style ="color:black">
+      <h2 class="titulo-cadastrocao">Meu pet</h2>
+      <hr class="line">
+           <p style ="color:black">
         {{ form.nome.label_tag }} <br>
         {{ form.nome }} <br><br>
         {{ form.porte.label_tag }} <br>
@@ -24,6 +27,9 @@
         {{ form.bio }} <br><br>
       </p>
       <button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br>
-    </center>
-</form>
+    </center>                    
+    </form>
+  </div>
+</div>
+</div>
 {% endblock %}
