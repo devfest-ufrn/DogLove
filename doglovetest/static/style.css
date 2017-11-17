@@ -627,3 +627,7 @@ div.cadastrocao {
   border-color: #FC5C7D;  
   width:87%;
 }
+
+.hide {
+  display: none;
+}

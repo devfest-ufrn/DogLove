@@ -38,10 +38,65 @@ class Pet (models.Model):
         ('M', 'Macho'),
     )
     
+    RACA_ESCOLHAS = (
+        ('raca_desconhecida', 'Raça Desconhecida'),
+        ('airedale_terrier', 'Airedale Terrier'),
+        ('boston_terrier', 'Boston Terrier'),
+        ('pastor_de_shetland', 'Pastor de Shetland'),
+        ('bichon_frise', 'Bichon Frisé'),
+        ('norwich_terrier', 'Norwich Terrier'),
+        ('bulmastife', 'Bulmastife'),
+        ('bull_terrier', 'Bull Terrier'),
+        ('boiadeiro_de_berna', 'Boiadeiro de Berna'),
+        ('buldogue_frances', 'Buldogue Francês'),
+        ('bull_terrier', 'Bull Terrier'),
+        ('basset_hound', 'Basset Hound'),
+        ('corgi', 'Corgi'),
+        ('pequines', 'Pequinês'),
+        ('malamute_do_alasca', 'Malamute do Alasca'),
+        ('lhasa_apso', 'Lhasa Apso'),
+        ('boiadeiro_australiano', 'Boiadeiro Australiano'),
+        ('terra_nova', 'Terra Nova'),
+        ('pointer_ingles', 'Pointer Inglês'),
+        ('saluki', 'Saluki'),
+        ('spitz_alemao', 'Spitz Alemão'),
+        ('pastor_ingles', 'Pastor Inglês'),
+        ('affenpinscher', 'Affenpinscher'),
+        ('akita_inu', 'Akita Inu'),
+        ('pastor_belga', 'Pastor Belga'),
+        ('cocker_spaniel', 'Cocker Spaniel'),
+        ('galgo_ingles', 'Galgo Inglês'),
+        ('maltes', 'Maltês'),
+        ('pastor_australiano', 'Pastor Australiano'),
+        ('shih_tzu', 'Shih Tzu'),
+        ('yorkshire_terrier', 'Yorkshire Terrier'),
+        ('border_collie', 'Border Collie'),
+        ('chow_chow', 'Chow Chow'),
+        ('pit_bull', 'Pit Bull'),
+        ('pug', 'Pug'),
+        ('boxer', 'Boxer'),
+        ('chihuahua', 'Chihuahua'),
+        ('mastim_ingles', 'Mastim Inglês'),
+        ('husky_siberiano', 'Husky Siberiano'),
+        ('dachshund', 'Dachshund'),
+        ('dobermann', 'Dobermann'),
+        ('poodle', 'Poodle'),
+        ('dogue_alemao', 'Dogue Alemão'),
+        ('golden_retriever', 'Golden Retriever'),
+        ('buldogue', 'Buldogue'),
+        ('beagle', 'Beagle'),
+        ('rottweiler', 'Rottweiler'),
+        ('labrador_retriever', 'Labrador Retriever'),
+        ('pastor_alemao', 'Pastor Alemão'),
+        ('sao_bernardo', 'São Bernardo'),
+    )
+    
+    RACA_ESCOLHAS2 = sorted(RACA_ESCOLHAS)
+    
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     porte = models.CharField(max_length=8,choices=PORTE_ESCOLHAS, default='pequeno')
     nome = models.CharField(max_length=15, default='nome')
-    raca = models.CharField(max_length=15, default='raca')
+    raca = models.CharField(max_length=30, default='raca_desconhecida', choices=RACA_ESCOLHAS2)
     idade = models.PositiveSmallIntegerField(default='0')
     sexo = models.CharField(max_length=1, choices=SEXO_ESCOLHAS, default='Macho')
     situacao = models.BooleanField(default='true')

@@ -27,11 +27,10 @@ class ProfileForm(ModelForm):
 class PetForm(ModelForm):
     class Meta:
         model = Pet
-        fields = ('porte', 'nome', 'raca', 'idade', 'foto', 'sexo', 'situacao', 'bio')
+        fields = ('porte', 'nome', 'idade', 'raca', 'foto', 'sexo', 'situacao', 'bio')
         widgets = {
             'foto': FileInput(),
             'nome': TextInput(attrs={'style': 'width: 150px; text-align: center;'}),
-            'raca': TextInput(attrs={'style': 'width: 150px; text-align: center;'}),
             'idade': NumberInput(attrs={'style': 'width: 50px; text-align: center;'}),
         }
         labels = {
