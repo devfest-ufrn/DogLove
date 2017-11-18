@@ -54,11 +54,15 @@
                             Minhas Combinações ({{ request.user.profile.qntComb }})
                         </a>
                     </li>
-                    <li>
-                        <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/configuracoes">
-                            Configurações
-                        </a>
+                    
+                    <li data-toggle="collapse" data-target="#submenu">
+                      <a href="#">Configurações </a>
                     </li>
+                    <ul class="sub-menu collapse" id="submenu" style="background-color: white;">
+                        <li><a href="#">Opções de Busca</a></li>
+                        <li><a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/configuracoes">Minhas Informações</a></li>
+                    </ul>  
+                        
                     <li>
                         <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/meupet">
                             Meu Pet

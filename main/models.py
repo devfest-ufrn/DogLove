@@ -18,6 +18,7 @@ class Profile(models.Model):
     rua = models.CharField(max_length=255, help_text='Digite seu endereço e confira o local no mapa')
     endereco = PlainLocationField(based_fields=['rua'], zoom=7)
     qntComb = models.IntegerField(default='0')
+    cadastrouPet = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username
     
@@ -89,6 +90,7 @@ class Pet (models.Model):
         ('labrador_retriever', 'Labrador Retriever'),
         ('pastor_alemao', 'Pastor Alemão'),
         ('sao_bernardo', 'São Bernardo'),
+        ('shiba_inu', 'Shiba Inu'),
     )
     
     RACA_ESCOLHAS2 = sorted(RACA_ESCOLHAS)
@@ -137,6 +139,7 @@ class Match (models.Model):
     user1status = models.CharField(max_length=1, choices=STATUS_ESCOLHAS, default='N')
     user2status = models.CharField(max_length=1, choices=STATUS_ESCOLHAS, default='N')
     data = models.DateTimeField(auto_now_add=True)
+    distancia = models.FloatField(default='999999999')
     
     def __str__(self):           
         return str(self.id)

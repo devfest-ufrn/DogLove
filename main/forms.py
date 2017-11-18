@@ -23,6 +23,16 @@ class ProfileForm(ModelForm):
             'rua': u"Endereço",
             'endereco': 'Coordenadas',
         }
+        widgets = {
+            'ddd': TextInput(attrs={'style': 'width: 50px; text-align: center;'}),
+            'celular': TextInput(attrs={'style': 'text-align: center;'}),
+        }
+    def __init__(self, *args, **kwargs):
+        # first call parent's constructor
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        # there's a `fields` property now
+        self.fields['ddd'].required = False
+        self.fields['celular'].required = False
         
 class PetForm(ModelForm):
     class Meta:

@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from models import Match, Mensagem
 from django.db import IntegrityError
 from itertools import chain
+from geopy.distance import vincenty
 
 def index(request):
     if not request.user.is_authenticated():
@@ -50,59 +51,100 @@ def index(request):
 def principal (request):
     if request.user.is_authenticated():
         
-        atualizarComb(request.user)
-        
-        #Cria uma lista com todas as matchs do usuário
-        lista1 = request.user.user1.all()
-        lista2 = request.user.user2.all()
-        matchs = list(chain(lista1, lista2))
-        
-        #Procura a primeira match que ainda não foi avaliada pelo usuário em sua lista de matchs
-        # e renderiza a página com ela
-        for match in matchs:
-            if match.user1 == request.user:
-                if match.user1status == 'N':
-                    perfil_exibido = match.user2
-                    return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido})
-            else:
-                if match.user2status == 'N':
-                    perfil_exibido = match.user1
-                    return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido})
-        
-        #Caso o usuário não tenha mais nenhuma match para avaliar, buscamos na lista 
-        #de usuários para tentar criar uma nova (sem filtros por enquanto)
-        matchCriada = False
-        users = User.objects.all()
-        for atual in users:
-            if request.user != atual:
-                jaexiste = False
-                for match in request.user.user2.all():
-                    if match.user1 == atual:
-                        jaexiste = True
-                if jaexiste == False:
-                    novamatch = Match()
-                    novamatch.user1 = request.user
-                    novamatch.user2 = atual
-                    try:
-                        novamatch.save()
-                        matchCriada = True
-                        perfil_exibido = novamatch.user2
-                        break
-                    except IntegrityError:
-                        del novamatch
-        
-        if matchCriada:
-            return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido})
-          
-        #Caso não seja possível criar uma match, exibimos uma página de erro
-        #avisando para mudar os filtros ou tentar mais tarde
+        #checa se o usuário já cadastro um pet depois de criar a conta
+        if request.user.profile.cadastrouPet == False:
+            return redirect(cadastrarPet)
+            
         else:
-            return render (request, 'matchNaoEncontrada.html')
+            
+            #checa se o usuário já cadastrou um endereço
+            if request.user.profile.endereco == '':
+                
+                return redirect(definirEndereco)
+                
+            else:
+            
+                #atualiza o numero de combinações aceitas do usuário
+                atualizarComb(request.user)
+                
+                #Cria uma lista com todas as matchs do usuário
+                lista1 = request.user.user1.all()
+                lista2 = request.user.user2.all()
+                matchs = list(chain(lista1, lista2))
+                
+                #Procura a primeira match que ainda não foi avaliada pelo usuário em sua lista de matchs
+                # e renderiza a página com ela
+                for match in matchs:
+                    if match.user1 == request.user:
+                        if match.user1status == 'N':
+                            perfil_exibido = match.user2
+                            novamatch = match
+                            return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido, 'novamatch' :novamatch})
+                    else:
+                        if match.user2status == 'N':
+                            perfil_exibido = match.user1
+                            novamatch = match
+                            return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido, 'novamatch' :novamatch})
+                
+                #Caso o usuário não tenha mais nenhuma match para avaliar, buscamos na lista 
+                #de usuários para tentar criar uma nova (sem filtros por enquanto)
+                matchCriada = False
+                users = User.objects.all()
+                for atual in users:
+                    if request.user != atual:
+                        jaexiste = False
+                        for match in request.user.user2.all():
+                            if match.user1 == atual:
+                                jaexiste = True
+                                
+                        if jaexiste == False:
+                            
+                            if atual.profile.endereco != '':
+                                
+                                novamatch = Match()
+                                novamatch.user1 = request.user
+                                novamatch.user2 = atual
+                                
+                                locationUser1 = request.user.profile.endereco.split(",")
+                                locationUser2 = atual.profile.endereco.split(",")
+                                location1 = (locationUser1[0], locationUser1[1])
+                                location2 = (locationUser2[0], locationUser2[1])
+                                novamatch.distancia = vincenty(location1, location2).kilometers
+                                
+                                #If filtros:
+                                    #salvar a match
+                                #else:
+                                    #deletar a match
+                                
+                                try:
+                                    novamatch.save()
+                                    matchCriada = True
+                                    perfil_exibido = novamatch.user2
+                                    break
+                                except IntegrityError:
+                                    del novamatch
+                                
+                            else:
+                                break
+                
+                if matchCriada:
+                    return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido, 'novamatch' :novamatch})
+                  
+                #Caso não seja possível criar uma match, exibimos uma página de erro
+                #avisando para mudar os filtros ou tentar mais tarde
+                else:
+                    return render (request, 'matchNaoEncontrada.html')
+                    
             
     else:
         return redirect ('index')
     
 def meupet (request):
+    
+    if request.user.profile.cadastrouPet == False:
+        request.user.profile.cadastrouPet = True
+        request.user.save()
+    
     if request.method == 'POST':
         form = PetForm(request.POST, request.FILES, instance=request.user.pet)
         if form.is_valid():
@@ -121,9 +163,9 @@ def configuracoes (request):
             form.save()
             return redirect('principal')
         else:
-            return redirect('principal')
+            return redirect('configuracoes')
     else:
-        form = ProfileForm(instance=request.user.pet)
+        form = ProfileForm(instance=request.user.profile)
         return render (request, 'configuracoes.html', {'form': form})
         
 def minhasCombinacoes (request):
@@ -259,3 +301,9 @@ def enviarMensagem (request, destinatario):
         listamensagens = combinacao.mensagens.all()
         
         return render (request, 'chat.html', {'listamensagens': listamensagens})
+        
+def definirEndereco (request):
+    return render (request, 'definirEndereco.html')
+    
+def cadastrarPet (request):
+    return render (request, 'cadastrarPet.html')
