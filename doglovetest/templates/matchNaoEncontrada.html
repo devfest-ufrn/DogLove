@@ -3,6 +3,15 @@
 
 {% block content %}
     <center>
-        <h1>NÃO HÁ MAIS MATCHES, ALTERE OS FILTROS OU TENTE NOVAMENTE MAIS TARDE</h1>
+        
+        <div class="container">
+            
+            <div class="row aviso">
+                <img src="{{ request.user.pet.foto.url }}" alt="User Image" class="img-circle" id="nao_encontrado">
+                <h2>Nenhuma combinação encontrada 😕</h2>
+                <p>Altere as opções de busca e tente novamente. <a><i class="fa fa-2x fa-sliders" aria-hidden="true"></i></a></p>
+            </div>
+            
+        </div>
     </center> 
 {% endblock %}
