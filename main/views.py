@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from forms import ProfileForm, PetForm
 from forms import LoginForm
 from django.contrib.auth.models import User
-from models import Match, Mensagem
+from models import Match, Mensagem, FaleConosco
 from django.db import IntegrityError
 from itertools import chain
 from geopy.distance import vincenty
@@ -15,6 +15,16 @@ from geopy.distance import vincenty
 def index(request):
     if not request.user.is_authenticated():
         if request.method == 'POST':
+            
+            if request.POST.get('nomeMsg', '') != "":
+                novaMsg = FaleConosco()
+                novaMsg.nome = request.POST.get('nomeMsg', '')
+                novaMsg.assunto = request.POST.get('assuntoMsg', '')
+                novaMsg.email = request.POST.get('emailMsg', '')
+                novaMsg.mensagem = request.POST.get('conteudoMsg', '')
+                novaMsg.save()
+                return redirect ('index')
+            
             form = SignUpForm(request.POST)
             form2 = LoginForm(request.POST)
             if form.is_valid():
@@ -36,14 +46,13 @@ def index(request):
                         login(request, user)
                         return redirect('principal')
                     else:
-                     return render (request, 'erro_login.html', {'form': form, 'form2':form2})
+                        return render (request, 'erro_login.html', {'form': form, 'form2':form2})
                 else:
                     return render (request, 'erro_cadastro.html', {'form': form, 'form2':form2})
                     
         else:
             form = SignUpForm()
             form2 = LoginForm()
-        form2 = LoginForm()
         return render(request, 'index.html', {'form': form, 'form2':form2})
     else:
         return redirect('principal')
