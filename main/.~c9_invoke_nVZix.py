@@ -158,10 +158,4 @@ class Mensagem (models.Model):
     class Meta:
         ordering = ('timestamp',)
         
-class FaleConosco (models.Model):
-    nome = models.CharField(max_length=50)
-    assunto = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    mensagem = models.CharField(max_length=500)
-    def __str__(self):
-            return self.nome
+cl

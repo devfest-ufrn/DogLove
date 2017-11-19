@@ -11,7 +11,7 @@
                         </figure>-->
                 <h4 class="card-title mt-3"><h1>{{ perfil_exibido.pet.nome }}</h1></h4>
                 <div class="meta">
-                    <h4>{{ perfil_exibido.pet.raca }}, {{ perfil_exibido.pet.idade }} anos</h4>
+                    <h4>{{ perfil_exibido.pet.get_raca_display }} - {{ perfil_exibido.pet.idade }} anos -  {{ novamatch.distancia|floatformat:2 }} km</h4>
                 </div>                        
             </div>
             

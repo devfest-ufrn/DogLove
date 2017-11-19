@@ -2,36 +2,207 @@
 {% load static %}
 
 {% block content %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+
+<script>
+  $(document).ready(function () {
+    $('.group').hide();
+    $('#{{request.user.pet.raca}}').show();
+    $('#id_raca').change(function () {
+      $('.group').hide();
+      $('#'+$(this).val()).show();
+    })
+  });
+</script>
+
 <form method="post" enctype="multipart/form-data">
-  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
 
   <div class=" col-md-10 col-xs-12 cadastrocao" style="margin-bottom: 20px;">
-    <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <center>
       <h2 class="titulo-cadastrocao">Meu pet</h2>
       <hr class="line">
-           <p style ="color:black">
         {{ form.nome.label_tag }} <br>
         {{ form.nome }} <br><br>
         {{ form.porte.label_tag }} <br>
         {{ form.porte }} <br><br>
         {{ form.raca.label_tag }} <br>
         {{ form.raca }} <br><br>
-        {{ form.idade.label_tag }} <br>
+        <div id="affenpinscher" class="group">
+          <img src="{% static 'imagens/racas/affenpinscher.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="airedale_terrier" class="group">
+          <img src="{% static 'imagens/racas/airedale_terrier.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="akita_inu" class="group">
+          <img src="{% static 'imagens/racas/akita_inu.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="basset_hound" class="group">
+          <img src="{% static 'imagens/racas/basset_hound.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="beagle" class="group">
+          <img src="{% static 'imagens/racas/beagle.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="bichon_frise" class="group">
+          <img src="{% static 'imagens/racas/bichon_frise.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="boiadeiro_australiano" class="group">
+          <img src="{% static 'imagens/racas/boiadeiro_australiano.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="boiadeiro_de_berna" class="group">
+          <img src="{% static 'imagens/racas/boiadeiro_de_berna.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="border_collie" class="group">
+          <img src="{% static 'imagens/racas/border_collie.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="boston_terrier" class="group">
+          <img src="{% static 'imagens/racas/boston_terrier.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="boxer" class="group">
+          <img src="{% static 'imagens/racas/boxer.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="buldogue" class="group">
+          <img src="{% static 'imagens/racas/buldogue.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="buldogue_frances" class="group">
+          <img src="{% static 'imagens/racas/buldogue_frances.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="bull_terrier" class="group">
+          <img src="{% static 'imagens/racas/bull_terrier.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="bulmastife" class="group">
+          <img src="{% static 'imagens/racas/bulmastife.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="chihuahua" class="group">
+          <img src="{% static 'imagens/racas/chihuahua.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="chow_chow" class="group">
+          <img src="{% static 'imagens/racas/chow_chow.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="cocker_spaniel" class="group">
+          <img src="{% static 'imagens/racas/cocker_spaniel.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="corgi" class="group">
+          <img src="{% static 'imagens/racas/corgi.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="dachshund" class="group">
+          <img src="{% static 'imagens/racas/dachshund.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="dobermann" class="group">
+          <img src="{% static 'imagens/racas/dobermann.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="dogue_alemao" class="group">
+          <img src="{% static 'imagens/racas/dogue_alemao.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="galgo_ingles" class="group">
+          <img src="{% static 'imagens/racas/galgo_ingles.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="golden_retriever" class="group">
+          <img src="{% static 'imagens/racas/golden_retriever.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="husky_siberiano" class="group">
+          <img src="{% static 'imagens/racas/husky_siberiano.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="labrador_retriever" class="group">
+          <img src="{% static 'imagens/racas/cocker_spaniel.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="lhasa_apso" class="group">
+          <img src="{% static 'imagens/racas/lhasa_apso.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="malamute_do_alasca" class="group">
+          <img src="{% static 'imagens/racas/malamute_do_alasca.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="maltes" class="group">
+          <img src="{% static 'imagens/racas/maltes.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="mastim_ingles" class="group">
+          <img src="{% static 'imagens/racas/mastim_ingles.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="norwich_terrier" class="group">
+          <img src="{% static 'imagens/racas/norwich_terrier.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="pastor_alemao.jpg" class="group">
+          <img src="{% static 'imagens/racas/pastor_alemao.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="pastor_australiano" class="group">
+          <img src="{% static 'imagens/racas/cocker_spaniel.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="pastor_belga" class="group">
+          <img src="{% static 'imagens/racas/cocker_spaniel.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="pastor_de_shetland" class="group">
+          <img src="{% static 'imagens/racas/pastor_de_shetland.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="pastor_ingles" class="group">
+          <img src="{% static 'imagens/racas/pastor_ingles.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="pequines" class="group">
+          <img src="{% static 'imagens/racas/pequines.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="pit_bull" class="group">
+          <img src="{% static 'imagens/racas/pit_bull.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="pointer_ingles" class="group">
+          <img src="{% static 'imagens/racas/pointer_ingles.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="poodle" class="group">
+          <img src="{% static 'imagens/racas/poodle.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="pug" class="group">
+          <img src="{% static 'imagens/racas/pug.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="rottweiler" class="group">
+          <img src="{% static 'imagens/racas/rottweiler.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="saluki" class="group">
+          <img src="{% static 'imagens/racas/saluki.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="sao_bernardo" class="group">
+          <img src="{% static 'imagens/racas/sao_bernardo.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="shih_tzu" class="group">
+          <img src="{% static 'imagens/racas/shih_tzu.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="spitz_alemao" class="group">
+          <img src="{% static 'imagens/racas/terra_nova.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="shih_tzu" class="group">
+          <img src="{% static 'imagens/racas/shih_tzu.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="spitz_alemao" class="group">
+          <img src="{% static 'imagens/racas/spitz_alemao.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="terra_nova" class="group">
+          <img src="{% static 'imagens/racas/terra_nova.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="yorkshire_terrier" class="group">
+          <img src="{% static 'imagens/racas/yorkshire_terrier.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        <div id="shiba_inu" class="group">
+          <img src="{% static 'imagens/racas/shiba_inu.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;">
+        </div>
+        
+        <br>{{ form.idade.label_tag }} <br>
         {{ form.idade }} <br><br>
         {{ form.sexo.label_tag }} <br>
         {{ form.sexo }} <br><br>
+        {{ form.foto.label_tag }} <br>
         <img src="{{ request.user.pet.foto.url }}" style="width: 200px; height: 200px; border-radius: 20px;"> <br><br>
         {{ form.foto }} <br><br>
         {{ form.bio.label_tag }} <br>
         {{ form.bio }} <br><br>
-      </p>
+        <br><br>
+        
+        <div class="fotos">
+          <div class="citrus hide"><img src="{% static 'imagens/racas/pastor_alemao.jpg' %}" style="width: 200px; height: 200px; border-radius: 100px;"></div>
+          <div class="pome hide">A pome is...</div>
+        </div>
+        
       <button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br>
-    </center>                    
-    </form>
+    </center>              
   </div>
+</form>
 </div>
 </div>
 {% endblock %}

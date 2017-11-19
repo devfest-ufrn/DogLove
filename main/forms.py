@@ -23,15 +23,25 @@ class ProfileForm(ModelForm):
             'rua': u"Endereço",
             'endereco': 'Coordenadas',
         }
+        widgets = {
+            'ddd': TextInput(attrs={'style': 'width: 50px; text-align: center;'}),
+            'celular': TextInput(attrs={'style': 'text-align: center;'}),
+            'rua': TextInput(attrs={'style': 'width: 200px; text-align: center;'}),
+        }
+    def __init__(self, *args, **kwargs):
+        # first call parent's constructor
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        # there's a `fields` property now
+        self.fields['ddd'].required = False
+        self.fields['celular'].required = False
         
 class PetForm(ModelForm):
     class Meta:
         model = Pet
-        fields = ('porte', 'nome', 'raca', 'idade', 'foto', 'sexo', 'situacao', 'bio')
+        fields = ('porte', 'nome', 'idade', 'raca', 'foto', 'sexo', 'situacao', 'bio')
         widgets = {
             'foto': FileInput(),
             'nome': TextInput(attrs={'style': 'width: 150px; text-align: center;'}),
-            'raca': TextInput(attrs={'style': 'width: 150px; text-align: center;'}),
             'idade': NumberInput(attrs={'style': 'width: 50px; text-align: center;'}),
         }
         labels = {

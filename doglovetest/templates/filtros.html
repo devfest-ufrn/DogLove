@@ -1,0 +1,31 @@
+{% extends "doglove.html" %}
+{% load static %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+<div class=" col-md-10 col-xs-12 cadastrocao" style="margin-bottom: 20px;">
+  <center>
+    <form method="post">
+      {% csrf_token %}
+      <h2 class="titulo-cadastrocao">Opções de Busca</h2>
+      <hr class="line">
+      <div style="width: 65%; margin-top: 5%;">
+        <input type="range" min="1" max="50" value="{{ request.user.profile.rangeBusca }}" class="slider" id="myRange" name="distancia">
+        <br><p id="distancia">Distância Máxima de Busca: <span id="demo"></span> km</p>
+      </div>
+      <button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br>
+    </form>
+  </center>
+</div>
+  
+  <script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = slider.value;
+    
+    slider.oninput = function() {
+      output.innerHTML = this.value;
+    }
+  </script>
+{% endblock %}
