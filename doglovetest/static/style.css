@@ -589,9 +589,12 @@ div.form-group.botaoenviar input{
 }  
 
 div.cadastrocao {
-    margin-left:25%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+
     width: 500px;
     height: auto;
+    
     font-size: 1em;
     overflow: hidden;
     margin-top: 15px;

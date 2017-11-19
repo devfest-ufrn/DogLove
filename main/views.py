@@ -356,6 +356,10 @@ def cadastrarPet (request):
 def filtros (request):
     if request.method == 'POST':
         request.user.profile.rangeBusca = request.POST.get('distancia', '')
+        if request.POST.get('mesmaRaca', '') == 'on':
+            request.user.profile.mesmaRaca = True
+        else:
+            request.user.profile.mesmaRaca = False
         request.user.save()
         return render (request, 'filtros.html')
     else:
