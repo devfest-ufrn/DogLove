@@ -2,24 +2,11 @@
 {% load static %}
 
 {% block content %}
-
-
-
-
-
- <div class=" col-md-10 col-xs-12 cadastrocao" style="margin-bottom: 20px;">
-    <center>
+<center>
   {% for mensagem in listamensagens %}
-        {{% if mensagem.sender ==  mensagem.match.user2.username: %}}
-               
-        <div>
-         <p style="color:red"> {{ mensagem.timestamp }} {{ mensagem.sender }}: {{ mensagem.conteudo }}</p> <br>
-        </div>
-        {{ %else: %}}
-             <div>
-                 <p style="color:black"> {{ mensagem.timestamp }} {{ mensagem.sender }}: {{ mensagem.conteudo }}</p> <br>
-             </div>    
-      
+    <div>
+      {{ mensagem.timestamp }} {{ mensagem.sender }}: {{ mensagem.conteudo }} <br>
+    </div>
   {% endfor %}
   
   <form method="post">
@@ -30,5 +17,3 @@
   </form>
 </center>
 {% endblock %}
-
-  </div>

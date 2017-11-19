@@ -6,14 +6,14 @@
         <center>
         <div class="row titulo">
             <h1>Procura-se</h1>
-            <h4>pretendentes para <i>{{ user.username }}</i></h4>
+            <h4>pretendentes para <i>{{ user.pet.nome }}</i></h4>
             <hr class="dark">
         </div>
         <div class="row">
             <img src="{{ request.user.pet.foto.url }}" alt="User Image" class="img-responsive" id="img_cachorro"></img>
         </div>
         <div class="row">
-            <h4>Altere as opções do <a>filtro</a> e tente novamente...</h4><br><br>
+            <h4>Clique <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/buscar">aqui</a> para procurar novas combinações</h4><br><br>
         </div>
         </center>
     </div>

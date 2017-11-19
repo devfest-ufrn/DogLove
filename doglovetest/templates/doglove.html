@@ -14,13 +14,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <!--CSS-->
     <link rel="stylesheet" type="text/css" href="{% static 'doglove.css' %}"/>
 
     <!--icone-->
-     <link rel="shortcut icon" type="image/png" href="{% static 'img/logo_icon.png' %}"/>
-     
+     <link rel="shortcut icon" type="image/png" href="{% static 'img/logo_icon.png' %}"/> 
 
 <script type="text/javascript" src="/static/location_field/js/jquery.livequery.js"></script>
 <script type="text/javascript" src="/static/location_field/js/form.js"></script>
@@ -36,41 +34,51 @@
                 <!--foto do cachorro e nome do usuario-->
                 <div class="row usuario">
                     <div class="col-xs-2 col-sm-2 hidden-md hidden-lg" style="margin-left:10px;">
-                        <a href="configuracoes"><i class="fa fa-2x fa-cog"></i></a>
+                        <i class="fa fa-1x fa-cog"></i>
                   </div>
                   <center>
-                  <div class="col-xs-6 col-sm-6 col-md-5 perfil">
+                  <div class="col-xs-7 col-sm-6 col-md-12 perfil">
                       <a href="meupet"><img src="{{ request.user.pet.foto.url }}" alt="User Image" id="usercao"></a>
                       {{ user.username }}
                   </div>
                   </center>
                   <div class="col-xs-2 col-sm-2 hidden-md hidden-lg">        
-                         <a href="minhascombinacoes" style="color:#fff;"><i class="fa fa-2x fa-paw"></i></a>
+                         <a href="minhascombinacoes" style="color:#fff;"><i class="fa fa-1x fa-paw"></i></a>
                   </div>
                 </div>
             
             <div class="row opcoes hidden-xs hidden-sm">
                 <center>
-                    <a href="minhascombinacoes">
-                        <li>
-                            <i class="fa fa-heart" aria-hidden="true"></i> Minhas Combinações ({{ request.user.profile.qntComb }})
-                        </li>
-                    </a>
-                    <a href="configuracoes">
-                        <li>
-                            <i class="fa fa-cog" aria-hidden="true"></i> Configurações
-                        </li>
-                    </a>
-                    <a href="meupet">    
-                        <li>
-                            <i class="fa fa-paw" aria-hidden="true"></i> Meu Pet
-                        </li>
-                    </a>
-                    <a href="logout">
-                        <li>
-                        <i class="fa fa-sign-out" aria-hidden="true"></i> Sair
-                        </li>
-                    <a href="logout">
+                    <li>
+                        <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/buscar">
+                            Buscar Combinações
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/minhascombinacoes">
+                            Minhas Combinações ({{ request.user.profile.qntComb }})
+                        </a>
+                    </li>
+                    
+                    <li data-toggle="collapse" data-target="#submenu">
+                        <a href="#">Configurações </a>
+                    </li>
+                    <ul class="sub-menu collapse" id="submenu" style="background-color: white;">
+                        <li><a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/filtros">Opções de Busca</a></li>
+                        <li><a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/configuracoes">Minhas Informações</a></li>
+                    </ul>  
+                        
+                    <li>
+                        <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/meupet">
+                            Meu Pet
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/logout">
+                            Sair
+                        </a>
+                    </li>
                 </center>
                 <a href="buscar">
                     <img src="{% static 'img/DL_logo.png' %}" id="logo"> 
