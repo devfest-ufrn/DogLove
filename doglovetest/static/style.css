@@ -1,8 +1,11 @@
 body{
   overflow-x: hidden;
 }
+
 .header-blue{
   background:linear-gradient(150deg, #FC5C7D, #6A82FB);
+  width:100%;
+  height: 100%;
   background-color:#184e8e;
   padding-bottom:120px;
   font-family:'Source Sans Pro', sans-serif;
@@ -10,8 +13,8 @@ body{
 
 .header-blue .navbar{
   background:transparent;
-  padding-top:12px;
-  padding-bottom:10px;
+  padding-top:0px;
+  padding-bottom:0px;
   color:#fff;
   border-radius:0;
   box-shadow:none;
@@ -20,8 +23,8 @@ body{
 
 @media (max-width:767px) {
   .header-blue .navbar{
-    padding-top:0;
-    padding-bottom:0;
+    padding-top:0px;
+    padding-bottom:0px;
   }
 }
 
@@ -33,8 +36,9 @@ body{
 }
 
 @media (max-width:767px) {
-  .header-blue .navbar .navbar-right{
-    margin-bottom:20px;
+  p.header-blue.navbar.navbar-right{
+    margin-top:0px;
+    margin-bottom:0px;
   }
 }
 
@@ -54,18 +58,19 @@ body{
   width:auto;
 }
 
-.header-blue .navbar .navbar-collapse p{
-  margin-top:10px;
-  margin-bottom:0;
+.header-blue .navbar .navbar p{
+  margin-top:30px;
+  margin-bottom:0px;
 }
 
-.header-blue .navbar .navbar-collapse p .login{
+
+.header-blue .navbar .navbar p .login{
   color:#d9d9d9;
   margin-right:10px;
   text-decoration:none;
 }
 
-.header-blue .navbar .navbar-collapse p .login:hover{
+.header-blue .navbar .navbar p .login:hover{
   color:#fff;
 }
 
@@ -81,7 +86,7 @@ body{
   background-color:#eee;
 }
 
-.header-blue .navbar .navbar-collapse, .header-blue .navbar .navbar-form{
+.header-blue .navbar .navbar, .header-blue .navbar .navbar-form{
   border-color:rgba(255,255,255,0.3);
 }
 
@@ -298,19 +303,21 @@ input#inputSenha.form-control{
 button#btn_entrar{
   border-radius: 20px;
   width: 90px;
-  margin-left: 10px;  
   background:linear-gradient(-180deg, #F15F79, #B24592);
   color: #ffffff;
   font-size: 18px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  
-  
 }
 
 #linkCadastrar{
   color: #95989A;
   padding-bottom: 5px; 
+}
+@media (max-width: 480px) {
+  #linkCadastrar{
+  padding-bottom: 0px; 
+}
 }
 #linkCadastrar a{
   color: #BF4A8C;
@@ -328,7 +335,7 @@ div.modal-content.conteudo_modalEntrar{
   div.modal-content.conteudo_modalEntrar{
     margin-left: 50px;
     margin-top: 80px;
-    height: 340px;
+    height: 70%;
   }
 }
 div.modal-content.conteudo_modalCadastrar{
@@ -626,4 +633,10 @@ div.cadastrocao {
 .line{
   border-color: #FC5C7D;  
   width:87%;
+}
+@media (max-width:767px) {
+  #btn_login{
+    margin-left: 70%;
+    margin-top:0px;
+  }
 }

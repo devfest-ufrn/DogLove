@@ -26,11 +26,11 @@
                         <a class="navbar-brand navbar-link" href="#">
                             <img src="{% static 'img/DL_logo.png' %}" class="device">
                         </a>
-                        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#login"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                        <a class="btn btn-default action-button hidden-md hidden-lg" data-toggle="modal" data-target=".login" role="button" href="#" style="font-size: 18px;" id="btn_login">Entrar</a>
                     </div>
-                    <div class="collapse navbar-collapse" id="login">         
+                    <div class="navbar" id="login">         
                         <p class="navbar-text navbar-right">
-                            <a class="btn btn-default action-button" data-toggle="modal" data-target=".login" role="button" href="#" style="font-size: 18px;">Entrar</a>
+                            <a class="btn btn-default action-button hidden-xs hidden-sm" data-toggle="modal" data-target=".login" role="button" href="#" style="font-size: 18px;" id="btn_login">Entrar</a>
                             
                             <!--inicio modal de login-->
                             <div class="modal fade login" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="modalLogin">
@@ -39,6 +39,7 @@
                                   <!--conteudo modal-->
                                   <form method="post">
                                     {% csrf_token %}
+                                    <center>
                                     <h2>Login</h2>
                                     <hr>
                                     {% for field in form2 %}
@@ -51,10 +52,10 @@
                                       </p>
                                     {% endfor %}
                                     <br>
-                                    <center>
+                                    
                                         <button type="submit" class="btn btn-default" style = "align:center" id="btn_entrar">Login</button>
                                         </center>
-                                        
+                                       
                                         <p class="text-center" id="linkCadastrar">Ainda não tem uma conta?<a href="">Cadastre-se</a></p>
                                   </form>
                                 </div>
@@ -80,7 +81,7 @@
                     </div>
                     <div class="col-lg-5 col-lg-offset-1 col-md-6 col-md-offset-0">
                         <h1>Encontre o pretendente ideal para o seu cachorro.</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu pretium lorem. Pellentesque scelerisque sed magna in accumsan. Donec in neque ut ligula consectetur laoreet.</p>
+                        <p class="hidden-xs">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu pretium lorem. Pellentesque scelerisque sed magna in accumsan. Donec in neque ut ligula consectetur laoreet.</p>
                         <button class="btn btn-default btn-lg action-button" type="button" style="background-color:#ffffff;color:#6A82FB;border-radius:30px;" data-toggle="modal" data-target=".cadastro" role="button">Começar</button>
                         
                             <!--inicio modal-->
@@ -104,7 +105,7 @@
                                       </p>
                                     {% endfor %}
                                    
-                                    <button type="submit" class="btn btn-default" style="margin-left:120px" id="btn_entrar">Enviar</button><br><br>
+                                    <center><button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br></center>
                                        
                                     </form>
                                     <!-- fim do conteudo -->
@@ -313,6 +314,7 @@
              
                 <div id="message" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                     <div class="panel-body">
+                        <h4 class="text-center">Dúvidas/Sujestões</h4>
                         <form  action="#">
                         
                             <div class="form-group ">
