@@ -15,10 +15,12 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     ddd = models.CharField(max_length=2, default='00')
     celular = models.CharField(max_length=9, default='000000000')
-    rua = models.CharField(max_length=255, help_text='Digite seu endereço e confira o local no mapa')
+    rua = models.CharField(max_length=255, help_text='Digite seu endereço e ajuste o local no mapa caso necessário')
     endereco = PlainLocationField(based_fields=['rua'], zoom=7)
     qntComb = models.IntegerField(default='0')
     cadastrouPet = models.BooleanField(default=False)
+    rangeBusca = models.IntegerField (default='20')
+    mesmaRaca = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username
     
@@ -50,7 +52,6 @@ class Pet (models.Model):
         ('bull_terrier', 'Bull Terrier'),
         ('boiadeiro_de_berna', 'Boiadeiro de Berna'),
         ('buldogue_frances', 'Buldogue Francês'),
-        ('bull_terrier', 'Bull Terrier'),
         ('basset_hound', 'Basset Hound'),
         ('corgi', 'Corgi'),
         ('pequines', 'Pequinês'),

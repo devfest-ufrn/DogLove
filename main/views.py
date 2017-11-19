@@ -87,46 +87,82 @@ def principal (request):
                             return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido, 'novamatch' :novamatch})
                 
                 #Caso o usuário não tenha mais nenhuma match para avaliar, buscamos na lista 
-                #de usuários para tentar criar uma nova (sem filtros por enquanto)
+                #de usuários para tentar criar uma nova
                 matchCriada = False
                 users = User.objects.all()
                 for atual in users:
                     if request.user != atual:
                         jaexiste = False
+                        #verifica se já existe uma match entre esses usuários
                         for match in request.user.user2.all():
                             if match.user1 == atual:
                                 jaexiste = True
-                                
+                        
                         if jaexiste == False:
                             
+                            #checa se o segundo usuário cadastrou um endereço (failsafe em caso de conta nova)
                             if atual.profile.endereco != '':
                                 
-                                novamatch = Match()
-                                novamatch.user1 = request.user
-                                novamatch.user2 = atual
-                                
-                                locationUser1 = request.user.profile.endereco.split(",")
-                                locationUser2 = atual.profile.endereco.split(",")
-                                location1 = (locationUser1[0], locationUser1[1])
-                                location2 = (locationUser2[0], locationUser2[1])
-                                novamatch.distancia = vincenty(location1, location2).kilometers
-                                
-                                #If filtros:
-                                    #salvar a match
-                                #else:
-                                    #deletar a match
-                                
-                                try:
-                                    novamatch.save()
-                                    matchCriada = True
-                                    perfil_exibido = novamatch.user2
-                                    break
-                                except IntegrityError:
-                                    del novamatch
-                                
-                            else:
-                                break
-                
+                                #verifica se os pets são de sexos diferentes
+                                if atual.pet.sexo != request.user.pet.sexo:
+                                    
+                                    #verifica se os cachorros tem o mesmo porte
+                                    if atual.pet.porte == request.user.pet.porte:
+                                        
+                                        #verifica o filtro de buscar apenas cachorros da mesma raça
+                                        if atual.profile.mesmaRaca == False and request.user.profile.mesmaRaca == False:
+                                    
+                                            novamatch = Match()
+                                            novamatch.user1 = request.user
+                                            novamatch.user2 = atual
+                                            
+                                            locationUser1 = request.user.profile.endereco.split(",")
+                                            locationUser2 = atual.profile.endereco.split(",")
+                                            location1 = (locationUser1[0], locationUser1[1])
+                                            location2 = (locationUser2[0], locationUser2[1])
+                                            novamatch.distancia = vincenty(location1, location2).kilometers
+                                            
+                                            #verifica se a distancia entre os usuarios é menor que o maximo dos dois
+                                            if (novamatch.user1.profile.rangeBusca >= novamatch.distancia 
+                                            and novamatch.user2.profile.rangeBusca >= novamatch.distancia):
+                                                try:
+                                                    novamatch.save()
+                                                    matchCriada = True
+                                                    perfil_exibido = novamatch.user2
+                                                    break
+                                                except IntegrityError:
+                                                    del novamatch
+                                            else:
+                                                del novamatch
+                                                
+                                        else:
+                                            
+                                            #verifica se as raças são iguais
+                                            if atual.pet.raca == request.user.pet.raca:
+                                                
+                                                novamatch = Match()
+                                                novamatch.user1 = request.user
+                                                novamatch.user2 = atual
+                                                
+                                                locationUser1 = request.user.profile.endereco.split(",")
+                                                locationUser2 = atual.profile.endereco.split(",")
+                                                location1 = (locationUser1[0], locationUser1[1])
+                                                location2 = (locationUser2[0], locationUser2[1])
+                                                novamatch.distancia = vincenty(location1, location2).kilometers
+                                                
+                                                #verifica se a distancia entre os usuarios é menor que o maximo dos dois
+                                                if (novamatch.user1.profile.rangeBusca >= novamatch.distancia 
+                                                and novamatch.user2.profile.rangeBusca >= novamatch.distancia):
+                                                    try:
+                                                        novamatch.save()
+                                                        matchCriada = True
+                                                        perfil_exibido = novamatch.user2
+                                                        break
+                                                    except IntegrityError:
+                                                        del novamatch
+                                                else:
+                                                    del novamatch
+                                                    
                 if matchCriada:
                     return render (request, 'principal.html', {'perfil_exibido' : perfil_exibido, 'novamatch' :novamatch})
                   
@@ -307,3 +343,11 @@ def definirEndereco (request):
     
 def cadastrarPet (request):
     return render (request, 'cadastrarPet.html')
+    
+def filtros (request):
+    if request.method == 'POST':
+        request.user.profile.rangeBusca = request.POST.get('distancia', '')
+        request.user.save()
+        return render (request, 'filtros.html')
+    else:
+        return render (request, 'filtros.html')

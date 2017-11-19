@@ -37,7 +37,7 @@
                         <i class="fa fa-1x fa-cog"></i>
                   </div>
                   <center>
-                  <div class="col-xs-7 col-sm-6 col-md-6 perfil">
+                  <div class="col-xs-7 col-sm-6 col-md-12 perfil">
                       <a href="meupet"><img src="{{ request.user.pet.foto.url }}" alt="User Image" id="usercao"></a>
                       {{ user.username }}
                   </div>
@@ -47,8 +47,14 @@
                   </div>
                 </div>
             
-            <div class="opcoes hidden-xs hidden-sm">
+            <div class="row opcoes hidden-xs hidden-sm">
                 <center>
+                    <li>
+                        <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/buscar">
+                            Buscar Combinações
+                        </a>
+                    </li>
+                    
                     <li>
                         <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/minhascombinacoes">
                             Minhas Combinações ({{ request.user.profile.qntComb }})
@@ -59,7 +65,7 @@
                       <a href="#">Configurações </a>
                     </li>
                     <ul class="sub-menu collapse" id="submenu" style="background-color: white;">
-                        <li><a href="#">Opções de Busca</a></li>
+                        <li><a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/filtros">Opções de Busca</a></li>
                         <li><a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/configuracoes">Minhas Informações</a></li>
                     </ul>  
                         

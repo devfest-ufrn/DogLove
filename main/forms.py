@@ -26,6 +26,7 @@ class ProfileForm(ModelForm):
         widgets = {
             'ddd': TextInput(attrs={'style': 'width: 50px; text-align: center;'}),
             'celular': TextInput(attrs={'style': 'text-align: center;'}),
+            'rua': TextInput(attrs={'style': 'width: 200px; text-align: center;'}),
         }
     def __init__(self, *args, **kwargs):
         # first call parent's constructor
