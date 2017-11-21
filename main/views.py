@@ -132,14 +132,16 @@ def principal (request):
                                             novamatch.distancia = vincenty(location1, location2).kilometers
                                             
                                             #verifica se a distancia entre os usuarios é menor que o maximo dos dois
-                                            if (novamatch.user1.profile.rangeBusca >= novamatch.distancia 
-                                            and novamatch.user2.profile.rangeBusca >= novamatch.distancia):
-                                                try:
-                                                    novamatch.save()
-                                                    matchCriada = True
-                                                    perfil_exibido = novamatch.user2
-                                                    break
-                                                except IntegrityError:
+                                            if novamatch.user1.profile.rangeBusca >= novamatch.distancia:
+                                                if novamatch.user2.profile.rangeBusca >= novamatch.distancia:
+                                                    try:
+                                                        novamatch.save()
+                                                        matchCriada = True
+                                                        perfil_exibido = novamatch.user2
+                                                        break
+                                                    except IntegrityError:
+                                                        del novamatch
+                                                else:
                                                     del novamatch
                                             else:
                                                 del novamatch
@@ -218,22 +220,45 @@ def minhasCombinacoes (request):
     lista1 = request.user.user1.all()
     lista2 = request.user.user2.all()
     matchs = list(chain(lista1, lista2))
+    listamatchs = []
     listausuarios = []
     
     for match in matchs:
         if match.user1 == request.user:
             if match.user1status == 'A':
                 if match.user2status == 'A':
+                    match.naoVistas = 0
+                    listamensagens = match.mensagens.all()
+                    if len(listamensagens) != 0:
+                        for mensagem in listamensagens:
+                            if mensagem.vista == False:
+                                match.naoVistas = match.naoVistas + 1
+                            else:
+                                break
+                        match.save()
                     listausuarios.append(match.user2)
+                    listamatchs.append(match)
         else:
             if match.user1status == 'A':
                 if match.user2status =='A':
+                    match.naoVistas = 0
+                    listamensagens = match.mensagens.all()
+                    if len(listamensagens) != 0:
+                        for mensagem in listamensagens:
+                            if mensagem.vista == False:
+                                match.naoVistas = match.naoVistas + 1
+                            else:
+                                break
+                        match.save()
                     listausuarios.append(match.user1)
+                    listamatchs.append(match)
     
     if len(listausuarios) == 0:
         return render (request, 'nenhumaCombinacao.html')
+        
     else:
-        return render (request, 'minhasCombinacoes.html', {'listausuarios': listausuarios})
+        lista = zip(listausuarios, listamatchs)
+        return render (request, 'minhasCombinacoes.html', {'lista': lista})
         
 def aceitar (request, usuarioAceito):
     lista1 = request.user.user1.all()
@@ -339,13 +364,18 @@ def enviarMensagem (request, destinatario):
         
         listamensagens = combinacao.mensagens.all()
         
-        return render (request, 'chat.html', {'listamensagens': listamensagens})
-        
     else:
         
         listamensagens = combinacao.mensagens.all()
         
-        return render (request, 'chat.html', {'listamensagens': listamensagens})
+    for mensagem in listamensagens:
+        if mensagem.vista == False:
+            mensagem.vista = True
+            mensagem.save()
+        else:
+            break
+        
+    return render (request, 'chat.html', {'listamensagens': listamensagens})
         
 def definirEndereco (request):
     return render (request, 'definirEndereco.html')

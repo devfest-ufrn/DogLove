@@ -141,6 +141,7 @@ class Match (models.Model):
     user2status = models.CharField(max_length=1, choices=STATUS_ESCOLHAS, default='N')
     data = models.DateTimeField(auto_now_add=True)
     distancia = models.FloatField(default='999999999')
+    naoVistas = models.IntegerField(default='0')
     
     def __str__(self):           
         return str(self.id)
@@ -154,6 +155,7 @@ class Mensagem (models.Model):
     conteudo = models.CharField(max_length=300)
     sender = models.CharField(max_length=150)
     match = models.ForeignKey(Match, on_delete=models.CASCADE, related_name="mensagens")
+    vista = models.BooleanField (default=False)
     
     class Meta:
         ordering = ('timestamp',)
