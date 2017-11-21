@@ -4,9 +4,19 @@
 {% block content %}
 <center>
   {% for mensagem in listamensagens %}
+    
+    {% if mensagem.sender == request.user.username %}
+        <div>
+          <p style="color:red;">{{ mensagem.timestamp }} {{ mensagem.sender }}: {{ mensagem.conteudo }}</p> <br>      
+          
+        </div>
+    {% else %}
     <div>
       {{ mensagem.timestamp }} {{ mensagem.sender }}: {{ mensagem.conteudo }} <br>
     </div>
+    {% endif %}
+  
+  
   {% endfor %}
   
   <form method="post">
@@ -17,3 +27,9 @@
   </form>
 </center>
 {% endblock %}
+
+
+
+
+
+ tenta if mensagem.sender == request.user.username pra saber se msg foi do usuario

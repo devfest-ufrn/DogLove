@@ -231,10 +231,9 @@ def minhasCombinacoes (request):
                     listamensagens = match.mensagens.all()
                     if len(listamensagens) != 0:
                         for mensagem in listamensagens:
-                            if mensagem.vista == False:
-                                match.naoVistas = match.naoVistas + 1
-                            else:
-                                break
+                            if mensagem.sender != request.user.username:
+                                if mensagem.vista == False:
+                                    match.naoVistas = match.naoVistas + 1
                         match.save()
                     listausuarios.append(match.user2)
                     listamatchs.append(match)
@@ -245,10 +244,9 @@ def minhasCombinacoes (request):
                     listamensagens = match.mensagens.all()
                     if len(listamensagens) != 0:
                         for mensagem in listamensagens:
-                            if mensagem.vista == False:
-                                match.naoVistas = match.naoVistas + 1
-                            else:
-                                break
+                            if mensagem.sender != request.user.username:
+                                if mensagem.vista == False:
+                                    match.naoVistas = match.naoVistas + 1
                         match.save()
                     listausuarios.append(match.user1)
                     listamatchs.append(match)
@@ -336,7 +334,6 @@ def enviarMensagem (request, destinatario):
     encontrado = False
     
     for match in lista1:
-        print("entrou lista 1")
         if match.user2.username == destinatario:
             encontrado = True
             combinacao = match
@@ -344,7 +341,6 @@ def enviarMensagem (request, destinatario):
 
     if encontrado == False:
         for match in lista2:
-            print("entrou lista 2")
             if match.user1.username == destinatario:
                 combinacao = match
                 encontrado = True
@@ -370,10 +366,10 @@ def enviarMensagem (request, destinatario):
         
     for mensagem in listamensagens:
         if mensagem.vista == False:
-            mensagem.vista = True
-            mensagem.save()
-        else:
-            break
+            if mensagem.sender != request.user.username:
+                print('entrou')
+                mensagem.vista = True
+                mensagem.save()
         
     return render (request, 'chat.html', {'listamensagens': listamensagens})
         
@@ -394,3 +390,27 @@ def filtros (request):
         return render (request, 'filtros.html')
     else:
         return render (request, 'filtros.html')
+        
+def cancelarMatch (request, usuario):
+    #procura o match a ser cancelado
+    lista1 = request.user.user1.all()
+    lista2 = request.user.user2.all()
+
+    encontrado = False
+
+    for match in lista1:
+        if match.user2.username == usuario:
+            match.user1status = 'R'
+            match.save()
+            encontrado = True
+            break
+
+    if encontrado == False:
+        for match in lista2:
+            if match.user1.username == usuario:
+                match.user2status = 'R'
+                match.save()
+                break
+            
+    return redirect ('minhasCombinacoes')
+    

@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^doglove/cadastrarPet$', views.cadastrarPet, name='cadastrarPet'),
     url(r'^doglove/minhascombinacoes$', views.minhasCombinacoes, name='minhasCombinacoes'),
     url(r'^doglove/minhascombinacoes/(?P<destinatario>.+)$', views.enviarMensagem, name='enviarMensagem'),
+    url(r'^doglove/cancelar/(?P<usuario>.+)$', views.cancelarMatch, name='cancelarMatch'),
     url(r'^doglove/configuracoes$', views.configuracoes, name='configuracoes'),
     url(r'^doglove/filtros$', views.filtros, name='filtros'),
     url(r'^doglove/aceitar/(?P<usuarioAceito>.+)$', views.aceitar, name='aceitar'),
