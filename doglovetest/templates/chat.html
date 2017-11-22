@@ -3,28 +3,29 @@
 
 {% block content %}
 <center>
-  {% for mensagem in listamensagens %}
-    
-    {% if mensagem.sender == request.user.username %}
-        <div>
-          <p style="color:red;">{{ mensagem.timestamp }} {{ mensagem.sender }}: {{ mensagem.conteudo }}</p> <br>      
-          
-        </div>
-    {% else %}
-    <div>
-      {{ mensagem.timestamp }} {{ mensagem.sender }}: {{ mensagem.conteudo }} <br>
-    </div>
-    {% endif %}
-  
-  
-  {% endfor %}
-  
-  <form method="post">
-    {% csrf_token %}
-    <label for="mensagem">Mensagem:</label>
-    <textarea class="form-control" rows="5" id="mensagem" maxlength="300" name="mensagem"></textarea>
-    <button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br>
-  </form>
+   <div class="card" style="width: 55%; margin-bottom: 20px; padding: 10px;">
+      {% for mensagem in listamensagens %}
+        
+        {% if mensagem.sender == request.user.username %}
+          <div style ="text-align: left; word-break:break-all;" id="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
+             <span id='chat'>[{{ mensagem.timestamp|date:'d/m - H:i' }}] {{ mensagem.sender }}: </span> {{ mensagem.conteudo }}
+          </div>
+        {% else %}
+            <div style ="text-align: left; word-break:break-all;" id="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
+              <span id='chat2'>[{{ mensagem.timestamp|date:'d/m - H:i' }}]  {{ mensagem.sender }}: </span>{{ mensagem.conteudo }}
+            </div>
+        {% endif %}
+      
+      
+      {% endfor %}
+      
+      <form method="post">
+        {% csrf_token %}<br>
+        <label for="mensagem">Mensagem:</label>
+        <textarea class="form-control" rows="5" id="mensagem" maxlength="300" name="mensagem" style="width:85%;"></textarea><br>
+        <button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br>
+      </form>
+  </div>
 </center>
 {% endblock %}
 
@@ -32,4 +33,3 @@
 
 
 
- tenta if mensagem.sender == request.user.username pra saber se msg foi do usuario

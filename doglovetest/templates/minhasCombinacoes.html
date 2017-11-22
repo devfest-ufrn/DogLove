@@ -4,8 +4,8 @@
 {% block content %}
 {% for usuario,match in lista %}
     <center>
-        <div class="card" style="width: 55%">
-            <a href="#bio{{usuario.username}}" data-toggle="collapse"><img src="{{ usuario.pet.foto.url }}" class="card-img-top" id="fotoperfil"></a>
+        <div class="card">
+            <a href="#bio{{usuario.username}}" data-toggle="collapse"><img src="{{ usuario.pet.foto.url }}" class="card-img-top" id="fotoperfil" style="margin-top: 5%; margin-bottom: 5%; border-radius:50px; border:3px solid black;"></a>
             <div class="card-block">
                 <h1 id='chat'>{{ usuario.pet.nome }} - dono: {{ usuario.username }}</h1>
                 <div class="meta">
@@ -17,17 +17,19 @@
                     <h4>{{ usuario.pet.bio }}</h4>
                 </div>
             </div>
-            <div id='chat' style ="float:left">
-                Conversar ({{match.naoVistas}}) <br>
-                <a href="minhascombinacoes/{{usuario.username}}">
-                    <img src="{% static 'img/chat.png' %}" style="margin-left: 50px; margin-right: 50px; width: 100px; height: 100px; margin-bottom: 20px;" >
-                </a>
-            </div>
-            <div id='chat' >
-                Cancelar Combinação <br>
-                <a href="cancelar/{{usuario.username}}">
-                    <img src="{% static 'img/cancelar.png' %}" style="margin-left: 50px; margin-right: 50px; width: 100px; height: 100px; margin-bottom: 20px;" >
-                </a>
+            <div>
+                <div id='chat' style ="float:left; margin-left: 30px; ">
+                    Conversar ({{match.naoVistas}}) <br>
+                    <a href="minhascombinacoes/{{usuario.username}}">
+                        <img src="{% static 'img/chat.png' %}" style="width: 100px; height: 100px; margin-bottom: 20px;" >
+                    </a>
+                </div>
+                <div id='chat' style ="float:right; margin-right: 30px;" >
+                    Cancelar Combinação <br>
+                    <a href="cancelar/{{usuario.username}}">
+                        <img src="{% static 'img/cancelar.png' %}" style=" width: 100px; height: 100px; margin-bottom: 20px;" >
+                    </a>
+                </div>
             </div>
         </div> <br>
     </center>

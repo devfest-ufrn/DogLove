@@ -3,24 +3,26 @@
 
 {% block content %}
   <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
-  <div class=" col-md-10 col-xs-12 cadastrocao" style="margin-bottom: 20px;">
-    <center>
-      <h2 class="titulo-cadastrocao">Minhas Informações</h2>
-      <hr class="line">
-      <form method="post">
-          {% csrf_token %}
-          {% for field in form %}
-            <p style ="color:black" class = "text-center">
-              {{ field.label_tag }}<br>
-              {{ field }}
-              {% for error in field.errors %}
-                <p style="color: red">{{ error }}</p>
-              {% endfor %} <br>
-              <p style="font-size: 16px; color: #F15F79; font-family: 'Roboto', sans-serif; font-weight: 700;">{{ field.help_text }}</p>
-            </p>
-          {% endfor %}
-          <button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br></center>
-      </form>
+  <center>
+    <div class="card" style="margin-bottom: 20px;">
+        <h2 class="titulo-cadastrocao">Minhas Informações</h2>
+        <hr class="line">
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+            
+              <p style ="color:black" class = "text-center">
+                {{ field.label_tag }}<br>
+                {{ field }}
+                {% for error in field.errors %}
+                  <p style="color: red">{{ error }}</p>
+                {% endfor %} <br>
+                <p style="font-size: 16px; color: #F15F79; font-family: 'Roboto', sans-serif; font-weight: 700;">{{ field.help_text }}</p>
+              </p>
+            {% endfor %}
+            <button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br></center>
+        </form>
+      </div>
     </center>
-  </div>
+  
 {% endblock %}
