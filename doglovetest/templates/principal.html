@@ -3,12 +3,9 @@
 
 {% block content %}
     <center>
-        <div class="card">
+        <div class="card" id="cardmatch">
             <a href="#bio" data-toggle="collapse"><img src="{{ perfil_exibido.pet.foto.url }}" id="fotoperfil"></a>
             <div class="card-block">
-                        <!--<figure class="profile">
-                            <img src="img/macho.jpg" class="profile-avatar" alt="">
-                        </figure>-->
                 <h4 class="card-title mt-3"><h1>{{ perfil_exibido.pet.nome }}</h1></h4>
                 <div class="meta">
                     <h4>{{ perfil_exibido.pet.get_raca_display }} - {{ perfil_exibido.pet.idade }} anos -  {{ novamatch.distancia|floatformat:2 }} km</h4>
@@ -21,14 +18,6 @@
                 </div>
             </div>
         </div>
-        <!--<a href="#bio" data-toggle="collapse"><img src="{{ perfil_exibido.pet.foto.url }}" id="fotoperfil"></a>-->
-        <!--<div id="infos">-->
-        <!--    <h1>{{ perfil_exibido.pet.nome }}</h1>-->
-        <!--    <h4>{{ perfil_exibido.pet.raca }}, Idade: {{ perfil_exibido.pet.idade }}</h4>-->
-        <!--</div>-->
-        <!--<div id="bio" class="collapse">-->
-        <!--   <h4>{{ perfil_exibido.pet.bio }}</h4>-->
-        <!--</div>-->
         <div id="botoes">
             <a href="/doglove/rejeitar/{{perfil_exibido.username }}"><img src="{% static 'img/nao.png' %}" style ="width: 30%;  float:left;"></a>
             <a href="/doglove/aceitar/{{perfil_exibido.username }}"><img src="{% static 'img/like.png' %}" style ="width: 30%;  float:right;"></a>

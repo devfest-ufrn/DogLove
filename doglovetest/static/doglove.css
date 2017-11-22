@@ -56,21 +56,12 @@ html, body {
   transform: translateX(-50%);
 }
 
-@media(min-width: 767px){
-    #logo{
-      position: relative;
-      padding-top: 35%; 
-      left: 50%;
-      transform: translateX(-50%);
-    }
-}
-
 #fotoperfil{
  width: 340px; 
  height: 350px;
- margin-top: 10%;
- margin-bottom: 2%;
- border-radius: 7px;
+ margin-top: 4%;
+ margin-bottom: 0%;
+ border-radius: 0px;
 }
 
 #infos {
@@ -96,42 +87,87 @@ html, body {
  width: 50%;
 }
 
+@media (min-width: 768px) {
+    .opcoes {
+        padding-top: 50%;
+    }
+    .menu {
+        position: fixed;
+        width: 32%;
+        top: 0px;
+    }
 
-@media (min-width: 767px) {
-  
-  .opcoes {
-    padding-top: 30%;
-  }
-  .menu {
-    position: fixed;
-    width: 32%;
-    top: 0px;
-  }
-  
+    #cardmatch{
+        width: 45%;
+    }
 }
 
 @media (max-width: 767px) {
-  
-  .usuario {
-    height: 110%;
-  }
-  
-  #logo{
-    display: none;
-  }
-  
-  .opcoes a{
-  color: #F15F79;
-  }
-  
- #fotoperfil{
- width: 200px; 
- height: 200px;
+    #cardmatch{
+        width: 80%;
+    }
+    .usuario {
+        height: 110%;
+    }
+    #logo{
+        display: none;
+    }
+    .opcoes a{
+      color: #F15F79;
+    }
+    #fotoperfil{
+        width: 240px; 
+        height: 250px;
+        padding-top: 5%;
+    }
+    div.menu_settings{
+        color:#FC5C7D;
+        margin:20px;
+        width: 90%;
+        height: auto;
+        border-radius: 25px;
+        font-size: 1em;
+        overflow: hidden;
+        margin-top: 15px;
+        border: none;
+        border-radius: .28571429rem;
+        box-shadow: 0px 0px 14px #888;
+        border-radius: 7px;
+    }
+    div.perfil{
+        text-align: center;
+        margin-left:10px;
+    }
+    div.col-xs-2.col-sm-2.hidden-md.hidden-lg{
+        margin-left:10px;
+    }
+    .cartaz{
+        width: 55%;
+        height: 46%;
+        margin-top: 10%;
+        /*font-size: 25px;*/
+    }
+    .cartaz h1{
+        font-family: 'Roboto', sans-serif;
+    }
+    #nao_encontrado{
+        width: 50%;
+        margin-top: 7%;
+        margin-left:25%;
+        margin-right: 25%;
+    }
+    .aviso p{
+        font-size: 14px;
+        color: #929fa6;
+        line-height: 20px;
+        padding-left:25%;
+    }
+    .aviso h2{
+        font-weight:300;
+        color:#656464;
+        padding-right:0px;
+    }
 }
-
-}
-
-
 
  ul,
  li {
@@ -340,15 +376,6 @@ li .sub-menu li:before {
   scroll-bar:hidden;
 }
 
-@media (max-width: 767px) {
-  div.perfil{
-  text-align: center;
-  margin-left:10px;
-}
-div.col-xs-2.col-sm-2.hidden-md.hidden-lg{
-    margin-left:10px;
-}
-}
 div.perfil{
     padding-right: 50px;
     padding-left: 0px;
@@ -401,24 +428,16 @@ div.perfil{
     margin-top: 10%;
     color: #6e3b03;
 }
+
 .cartaz h1{
     font-family: 'Algerian', sans-serif;
 }
-@media (max-width: 767px) {
-  .cartaz{
-    width: 55%;
-    height: 46%;
-    margin-top: 10%;
-    /*font-size: 25px;*/
-}
-.cartaz h1{
-    font-family: 'Roboto', sans-serif;
-}
-}
+
 hr.dark{
     border-color: #8c4010;
     width: 70%;
 }
+
 #img_cachorro{
     border: 2px #8c4010 solid;
     width: 200px;
@@ -432,41 +451,24 @@ hr.dark{
  filter: grayscale(100%);
  opacity:0.5;
 }
+
 .aviso{
     text-align:center;
     font-family: 'Roboto', sans-serif;
 }
+
 .aviso p{
     font-size: 14px;
     color: #929fa6;
     line-height: 20px;
     padding-right:25%;
 }
+
 .aviso h2{
     font-weight:300;
     color:#656464;
     text-align:center;
     padding-right:25%;
-}
-@media (max-width: 767px) {
-  #nao_encontrado{
-     width: 50%;
-     margin-top: 7%;
-     margin-left:25%;
-     margin-right: 25%;
-    }
-    
-    .aviso p{
-        font-size: 14px;
-        color: #929fa6;
-        line-height: 20px;
-        padding-left:25%;
-    }
-    .aviso h2{
-        font-weight:300;
-        color:#656464;
-        padding-right:0px;
-    }
 }
 
 div.menu_settings{
@@ -497,25 +499,6 @@ div.menu_settings h4{
 div.menu_settings h5{
     color:#c6c5c4;
     font-weight:700;
-}
-@media (max-width: 767px) {
-  div.menu_settings{
-    color:#FC5C7D;
-    margin:20px;
-    width: 90%;
-    height: auto;
-    border-radius: 25px;
-    font-size: 1em;
-    overflow: hidden;
-    margin-top: 15px;
-    border: none;
-    border-radius: .28571429rem;
-    box-shadow: 0px 0px 14px #888;
-    border-radius: 7px;
-    }
-    .card{
-        width: 90%;
-    }
 }
 
 #even{
