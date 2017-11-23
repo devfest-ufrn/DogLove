@@ -20,13 +20,17 @@ html, body {
 }
 .usuario a{
     color:white;
+    font-size: 34px;
+    text-align: center;
 }
-.usuario a:visited{
-    color:white;
+
+.usuario a:active {
+    color:#F15F79;
 }
-.usuario a:link{
-    /*color:red;*/
+.usuario a:focus{
+    color:#F15F79;
 }
+
 #usercao img{
  margin-bottom: 20px;
 }
@@ -41,7 +45,13 @@ html, body {
   border-right:1px #F15F79 solid;
   height:100vh;
 }
-
+.col-xs-3.hidden-md.hidden-lg.perfil{
+    left: 25%;
+  transform: translateX(-50%);
+}
+.opcoes li:hover{
+    
+}
 .opcoes a{
   color: #F15F79;
 }
@@ -50,8 +60,8 @@ html, body {
 }
 
 #logo{
-  position: relative;
-  padding-top: 35%; 
+  position: absolute;
+  bottom: 15%; 
   left: 50%;
   transform: translateX(-50%);
 }
@@ -89,7 +99,7 @@ html, body {
 
 @media (min-width: 768px) {
     .opcoes {
-        padding-top: 50%;
+        padding-top: 30%;
     }
     .menu {
         position: fixed;
@@ -150,24 +160,8 @@ html, body {
     .cartaz h1{
         font-family: 'Roboto', sans-serif;
     }
-    #nao_encontrado{
-        width: 50%;
-        margin-top: 7%;
-        margin-left:25%;
-        margin-right: 25%;
-    }
-    .aviso p{
-        font-size: 14px;
-        color: #929fa6;
-        line-height: 20px;
-        padding-left:25%;
-    }
-    .aviso h2{
-        font-weight:300;
-        color:#656464;
-        padding-right:0px;
-    }
 }
+
 
  ul,
  li {
@@ -177,46 +171,11 @@ html, body {
   line-height: 35px;
   cursor: pointer;
 }
- ul :not(collapsed) .arrow:before,
- li :not(collapsed) .arrow:before {
-  content: "\f078";
-  display: inline-block;
-  padding-left: 10px;
-  padding-right: 10px;
-  vertical-align: middle;
-  float: right;
-}
- ul .active,
+  ul .active,
  li .active {  
-  background-color: #6A82FB;
+  /*border-right-color: 3px #6A82FB solid;*/
 }
- ul .sub-menu li.active,
- li .sub-menu li.active {
-  color: #6A82FB;
-}
- ul .sub-menu li.active a,
- li .sub-menu li.active a {
-  color: #6A82FB;
-}
- ul .sub-menu li,
- li .sub-menu li {
-  background-color: #ffffff;
-  border-left: 2px solid #FC5C7D;
-  border-right: 2px solid #FC5C7D;
-  margin-left: 0px;
-}
- ul .sub-menu li:hover,
- li .sub-menu li:hover {
-  background-color: #FF7A93;
-}
-ul .sub-menu li:before,
-li .sub-menu li:before {
-  content: "\f105";
-  display: inline-block;
-  padding-left: 10px;
-  padding-right: 10px;
-  vertical-align: middle;
-}
+ 
  li {
   padding-left: 0px;  
   text-align: center;
@@ -229,7 +188,6 @@ li .sub-menu li:before {
 }
  li a:hover {
   text-decoration: none;
-  color: #ffffff;
   font-size: 18px;
 }
  li a i {
@@ -241,13 +199,14 @@ li .sub-menu li:before {
   text-align: center;
 }
  li:hover {
-  border-left: 3px solid #6A82FB;
-  background-color: #6A82FB;
+  border-right: 4px solid #6A82FB;
+  /*background-color: #6A82FB;*/
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
   -ms-transition: all 1s ease;
   transition: all 1s ease;
+  text-decoration: none;
 }
 
 #like{
@@ -258,7 +217,27 @@ li .sub-menu li:before {
 #not{
   width: 80%;  
 }
+@media (max-width: 767px) {
+  
+  .usuario {
+    height: 110%;
+  }
+  
+  #logo{
+    display: none;
+  }
+  
+  .opcoes a{
+  color: #F15F79;
+  text-decoration: none;
+  }
+  
+ #fotoperfil{
+ width: 200px; 
+ height: 200px;
+}
 
+}
 .card-block {    
     font-size: 1em;
     position: relative;
@@ -307,6 +286,11 @@ li .sub-menu li:before {
     border-radius: .28571429rem;
     box-shadow: 0px 0px 14px #888;
     border-radius: 7px;
+}
+@media (max-width:767px){
+    .card {
+        width: 80%;
+    }
 }
 .card-img-top {
     
@@ -377,7 +361,7 @@ li .sub-menu li:before {
 }
 
 div.perfil{
-    padding-right: 50px;
+    /*padding-right: 50px;*/
     padding-left: 0px;
 }
 
@@ -456,24 +440,42 @@ hr.dark{
     text-align:center;
     font-family: 'Roboto', sans-serif;
 }
-
 .aviso p{
     font-size: 14px;
     color: #929fa6;
     line-height: 20px;
     padding-right:25%;
 }
-
 .aviso h2{
     font-weight:300;
     color:#656464;
     text-align:center;
     padding-right:25%;
 }
+@media (max-width: 767px) {
+  #nao_encontrado{
+     width: 50%;
+     margin-top: 7%;
+     margin-left:25%;
+     margin-right: 25%;
+    }
+    
+    .aviso p{
+        font-size: 14px;
+        color: #929fa6;
+        line-height: 20px;
+        padding-left:25%;
+    }
+    .aviso h2{
+        font-weight:300;
+        color:#656464;
+        padding-right:0px;
+    }
+}
 
 div.menu_settings{
     text-align:center;
-    width:55%;
+    width:60%;
     margin-top: 15px;
     border-radius: .28571429rem;
     box-shadow: 0px 0px 14px #888;
@@ -521,3 +523,66 @@ div.menu_settings h5{
     font-weight:700;
     font-family: 'Roboto', sans-serif;
 }
+
+div.menu_settings{
+    text-align:center;
+    width:55%;
+    margin-top: 15px;
+    border-radius: .28571429rem;
+    box-shadow: 0px 0px 14px #888;
+    border-radius: 7px;
+    color:#FC5C7D;
+    font-family: 'Roboto', sans-serif;
+    overflow:;
+}
+div.menu_settings a{
+    color:#FC5C7D;
+}
+div.menu_settings a:hover{
+    color:#6A82FB;
+}
+div.menu_settings img{
+    width:40%;
+    margin-top:20px;
+}
+div.menu_settings h4{
+    color:#989796;
+    font-weight:400;
+}
+div.menu_settings h5{
+    color:#c6c5c4;
+    font-weight:700;
+}
+@media (max-width: 767px) {
+  div.menu_settings{
+    color:#FC5C7D;
+    margin:20px;
+    width: 90%;
+    height: auto;
+    border-radius: 25px;
+    font-size: 1em;
+    overflow: hidden;
+    margin-top: 15px;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0px 0px 14px #888;
+    border-radius: 7px;
+    }
+}
+.card-block h3{    
+    color: #888;
+}
+#cardmatch.card a{
+    color:#FC5C7D;
+}
+
+#fotochat{
+    width: 30px;
+    height: 30px;
+    float:left;
+    vertical-align: middle;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 8px;
+}
+

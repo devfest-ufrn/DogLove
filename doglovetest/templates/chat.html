@@ -1,35 +1,31 @@
 {% extends "doglove.html" %}
 {% load static %}
-
 {% block content %}
 <center>
-   <div class="card" style="width: 55%; margin-bottom: 20px; padding: 10px;">
-      {% for mensagem in listamensagens %}
-        
-        {% if mensagem.sender == request.user.username %}
-          <div style ="text-align: left; word-break:break-all;" id="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
-             <span id='chat'>[{{ mensagem.timestamp|date:'d/m - H:i' }}] {{ mensagem.sender }}: </span> {{ mensagem.conteudo }}
-          </div>
-        {% else %}
-            <div style ="text-align: left; word-break:break-all;" id="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
-              <span id='chat2'>[{{ mensagem.timestamp|date:'d/m - H:i' }}]  {{ mensagem.sender }}: </span>{{ mensagem.conteudo }}
-            </div>
-        {% endif %}
-      
-      
-      {% endfor %}
-      
-      <form method="post">
-        {% csrf_token %}<br>
-        <label for="mensagem">Mensagem:</label>
-        <textarea class="form-control" rows="5" id="mensagem" maxlength="300" name="mensagem" style="width:85%;"></textarea><br>
-        <button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br>
-      </form>
-  </div>
+	<div class="card" style="margin-bottom: 20px; padding: 10px; height:95vh;  overflow-y: scroll;">
+		<div class="row">
+			<h3>Combine um encontro!!</h3>
+			<hr id="dark">
+		</div>
+		{% for mensagem in listamensagens %}
+  		{% if mensagem.sender == request.user.username %}
+    		<div style ="display: flex; align-items: center; text-align: left; word-break:break-all; height:auto;" id="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
+    			<img src="{{ request.user.pet.foto.url }}" class="img-circle img-responsive" id="fotochat">
+    			<p><span id='chat'>&nbsp;[{{ mensagem.timestamp|date:'d/m - H:i' }}] {{ mensagem.sender }}: &nbsp;</span>{{ mensagem.conteudo }}</p>
+    		</div>
+    	{% else %}
+    		<div style ="display: flex; align-items: center; text-align: left; word-break:break-all; height:auto;" id="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
+    			<img src="{{ user2.pet.foto.url }}" class="img-circle img-responsive" id="fotochat">
+    			<p><span id='chat2'>&nbsp;[{{ mensagem.timestamp|date:'d/m - H:i' }}]  {{ mensagem.sender }}: &nbsp;</span>{{ mensagem.conteudo }}</p>
+    		</div>
+  		{% endif %}
+		{% endfor %}
+		<form method="post">
+			{% csrf_token %}<br>
+			<label for="mensagem">Mensagem:</label>
+			<textarea class="form-control" rows="5" id="mensagem" maxlength="300" name="mensagem" style="width:85%;"></textarea><br>
+			<button type="submit" class="btn btn-default" id="btn_entrar">Enviar</button><br><br>
+		</form>
+	</div>
 </center>
 {% endblock %}
-
-
-
-
-

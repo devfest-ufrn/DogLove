@@ -298,14 +298,11 @@ input#inputSenha.form-control{
 button#btn_entrar{
   border-radius: 20px;
   width: 90px;
-  margin-left: 10px;  
   background:linear-gradient(-180deg, #F15F79, #B24592);
   color: #ffffff;
   font-size: 18px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
-  
-  
 }
 
 #linkCadastrar{
@@ -633,4 +630,10 @@ div.cadastrocao {
 
 .hide {
   display: none;
+}
+@media (max-width:767px) {
+  #btn_login{
+    margin-left: 70%;
+    margin-top:0px;
+  }
 }

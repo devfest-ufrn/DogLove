@@ -1,110 +1,96 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt">
-  <head>
-    <title>DogLove - Bem-vindo!</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!--fonte-->
-    <!--<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--CSS-->
-    <link rel="stylesheet" type="text/css" href="{% static 'doglove.css' %}"/>
-
-    <!--icone-->
-     <link rel="shortcut icon" type="image/png" href="{% static 'img/logo_icon.png' %}"/> 
-
-<script type="text/javascript" src="/static/location_field/js/jquery.livequery.js"></script>
-<script type="text/javascript" src="/static/location_field/js/form.js"></script>
-     
-     
-     <link rel="stylesheet" type="text/css" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
-  </head>
-<body>
-
-<div class="row">
-    <div class="col-sm-4">
-        <div class="menu">
-                <!--foto do cachorro e nome do usuario-->
-                <div class="row usuario">
-                    <div class="col-xs-2 hidden-sm hidden-md hidden-lg" style="margin-left:10px;">
-                        <i class="fa fa-1x fa-cog"></i>
-                  </div>
+   <head>
+      <title>DogLove - Bem-vindo!</title>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!--fonte-->
+      <!--<link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700">
+      <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <!--CSS-->
+      <link rel="stylesheet" type="text/css" href="{% static 'doglove.css' %}"/>
+      <!--icone-->
+      <link rel="shortcut icon" type="image/png" href="{% static 'img/logo_icon.png' %}"/>
+      <script type="text/javascript" src="/static/location_field/js/jquery.livequery.js"></script>
+      <script type="text/javascript" src="/static/location_field/js/form.js"></script>
+      <link rel="stylesheet" type="text/css" href="{% static 'vendor/font-awesome/css/font-awesome.min.css' %}">
+   </head>
+   <body>
+      <div class="row">
+         <div class="col-sm-4">
+            <div class="menu">
+               <!--foto do cachorro e nome do usuario-->
+               <div class="row usuario">
                   <center>
-                  <div class="col-xs-7 col-sm-12 col-md-12 perfil">
-                      <a href="meupet"><img src="{{ request.user.pet.foto.url }}" alt="User Image" id="usercao"></a>
-                      {{ user.username }}
-                  </div>
+                     <div class="col-xs-3 col-sm-2 hidden-md hidden-lg pull-left">
+                        <a href="configuracoes"><i class="fa fa-cog"></i></a>
+                     </div>
                   </center>
-                  <div class="col-xs-2 hidden-sm hidden-md hidden-lg">        
-                         <a href="minhascombinacoes" style="color:#fff;"><i class="fa fa-1x fa-paw"></i></a>
-                  </div>
-                </div>
-            
-            <div class="row opcoes hidden-xs">
-                <center>
-                    <li>
+                  <center>
+                     <div class="col-md-5 hidden-xs hidden-sm perfil">
+                        <a href="meupet"><img src="{{ request.user.pet.foto.url }}" alt="User Image" id="usercao"></a>
+                        {{ user.username }}
+                     </div>
+                  </center>
+                  <!--Mobile-->
+                  <center>
+                     <div class="col-xs-3 hidden-md hidden-lg perfil">
+                        <a href="buscar"><i class="fa fa-paw"></i></a>
+                     </div>
+                  </center>
+                  <!--fim-->
+                  <center>
+                     <div class="col-xs-3 col-sm-2 col-sm-2 hidden-md hidden-lg pull-right">        
+                        <a href="minhascombinacoes" style="color:#fff;"><i class="fa fa-comments"></i></a>
+                     </div>
+                  </center>
+               </div>
+               <div class="row opcoes hidden-xs">
+                  <center>
+                     <li>
                         <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/buscar">
-                            Buscar Combinações
+                        <i class="fa fa-search" aria-hidden="true"></i> Buscar Combinações
                         </a>
-                    </li>
-                    
-                    <li>
+                     </li>
+                     <li>
                         <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/minhascombinacoes">
-                            Minhas Combinações ({{ request.user.profile.qntComb }})
+                        <i class="fa fa-heart" aria-hidden="true"></i> Minhas Combinações ({{ request.user.profile.qntComb }})
                         </a>
-                    </li>
-                    
-                    <li data-toggle="collapse" data-target="#submenu">
-                        <a href="#">Configurações </a>
-                    </li>
-                    <ul class="sub-menu collapse" id="submenu" style="background-color: white;">
-                        <li><a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/filtros">Opções de Busca</a></li>
-                        <li><a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/configuracoes">Minhas Informações</a></li>
-                    </ul>  
-                        
-                    <li>
+                     </li>
+                     <li data-toggle="collapse" data-target="#submenu">
+                        <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/configuracoes">
+                        <i class="fa fa-cog" aria-hidden="true"></i> Configurações 
+                        </a>
+                     </li>
+                     <li>
                         <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/meupet">
-                            Meu Pet
+                        <i class="fa fa-paw" aria-hidden="true"></i> Meu Pet
                         </a>
-                    </li>
-                    <li>
+                     </li>
+                     <li>
                         <a href="http://doglovetest-tiagobarros.c9users.io:8080/doglove/logout">
-                            Sair
+                        <i class="fa fa-sign-out" aria-hidden="true"></i> Sair
                         </a>
-                    </li>
-                </center>
-                <a href="buscar">
-                    <img src="{% static 'img/DL_logo.png' %}" id="logo"> 
-                </a>
-                
+                     </li>
+                  </center>
+                  <a href="buscar">
+                  <img src="{% static 'img/DL_logo.png' %}" id="logo"> 
+                  </a>
+               </div>
             </div>
-        </div>
-    </div>
-    
-    <div class="col-sm-8">
-      <div>
-        {% block content %}{% endblock %}
+         </div>
+         <div class="col-sm-8">
+            <div>
+               {% block content %}{% endblock %}
+            </div>
+         </div>
       </div>
-    </div>
-</div>
-
-</body>
-
+   </body>
 </html>
-
-<!--
-<p>Usuario: {{ user.username }}.</p>
-<p>Email: {{ user.email }}.</p>
-<p>Nome: {{ user.first_name}}.</p>
-<p>Sobrenome: {{ user.last_name }}.</p>
--->
-
-
-

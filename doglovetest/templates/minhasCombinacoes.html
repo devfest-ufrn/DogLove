@@ -4,10 +4,11 @@
 {% block content %}
 {% for usuario,match in lista %}
     <center>
-        <div class="card">
-            <a href="#bio{{usuario.username}}" data-toggle="collapse"><img src="{{ usuario.pet.foto.url }}" class="card-img-top" id="fotoperfil" style="margin-top: 5%; margin-bottom: 5%; border-radius:50px; border:3px solid black;"></a>
+        <div class="card" id="cardmatch" style='padding-bottom:10px;'>
+            <a href="#bio{{usuario.username}}" data-toggle="collapse"><img src="{{ usuario.pet.foto.url }}" class="card-img-top img-thumbnail" id="fotoperfil" style="margin-top: 5%; margin-bottom: 5%;"></a>
             <div class="card-block">
-                <h1 id='chat'>{{ usuario.pet.nome }} - dono: {{ usuario.username }}</h1>
+                <h1 id='chat'>{{ usuario.pet.nome }}</h1>
+                <h3>{{ usuario.username }} (dono)</h3>
                 <div class="meta">
                     <h4>{{ usuario.pet.get_raca_display }} - {{ usuario.pet.idade }} anos -  {{ match.distancia|floatformat:2 }} km</h4>
                 </div>                        
@@ -17,17 +18,25 @@
                     <h4>{{ usuario.pet.bio }}</h4>
                 </div>
             </div>
-            <div>
-                <div id='chat' style ="float:left; margin-left: 30px; ">
+            <div class="row">
+                <div class="col-md-6 col-xs-6" id='chat' style ="text-align:center;">
                     Conversar ({{match.naoVistas}}) <br>
                     <a href="minhascombinacoes/{{usuario.username}}">
-                        <img src="{% static 'img/chat.png' %}" style="width: 100px; height: 100px; margin-bottom: 20px;" >
+                        <span class="fa-stack fa-2x fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-commenting fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <!--<img src="{% static 'img/chat.png' %}" style="width: 100px; height: 100px; margin-bottom: 20px;" >-->
                     </a>
                 </div>
-                <div id='chat' style ="float:right; margin-right: 30px;" >
+                <div class="col-md-6 col-xs-6" id='chat' style ="text-align:center;">
                     Cancelar Combinação <br>
                     <a href="cancelar/{{usuario.username}}">
-                        <img src="{% static 'img/cancelar.png' %}" style=" width: 100px; height: 100px; margin-bottom: 20px;" >
+                        <span class="fa-stack fa-2x fa-lg">
+                          <i class="fa fa-circle fa-stack-2x"></i>
+                          <i class="fa fa-times fa-stack-1x fa-inverse"></i>
+                        </span>
+                        <!--<img src="{% static 'img/cancelar.png' %}" style=" width: 100px; height: 100px; margin-bottom: 20px;" >-->
                     </a>
                 </div>
             </div>
